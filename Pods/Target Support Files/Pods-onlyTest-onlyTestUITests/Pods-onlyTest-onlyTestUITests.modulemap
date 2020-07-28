@@ -1,0 +1,6 @@
+framework module Pods_onlyTest_onlyTestUITests {
+  umbrella header "Pods-onlyTest-onlyTestUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}
