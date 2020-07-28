@@ -7,7 +7,7 @@ target 'onlyTest' do
 
   # Pods for onlyTest
   pod 'CocoaLumberjack'
-  pod 'SuperPlayer'
+  pod 'SuperPlayer','3.2.5'
   pod 'MJExtension'
   pod 'MBProgressHUD'
   pod 'IQKeyboardManager'
