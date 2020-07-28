@@ -23,9 +23,9 @@ PODS:
   - MJExtension (3.2.2)
   - MJRefresh (3.4.3)
   - MMLayout (0.3.0)
-  - SDWebImage (5.8.3):
-    - SDWebImage/Core (= 5.8.3)
-  - SDWebImage/Core (5.8.3)
+  - SDWebImage (5.8.4):
+    - SDWebImage/Core (= 5.8.4)
+  - SDWebImage/Core (5.8.4)
   - SuperPlayer (3.2.5):
     - AFNetworking (~> 4.0)
     - Masonry (~> 1.1.0)
@@ -47,7 +47,7 @@ DEPENDENCIES:
   - MBProgressHUD
   - MJExtension
   - MJRefresh
-  - SuperPlayer
+  - SuperPlayer (= 3.2.5)
   - WebViewJavascriptBridge
 
 SPEC REPOS:
@@ -74,11 +74,11 @@ SPEC CHECKSUMS:
   MJExtension: d9b9c74cbdeb724c1e9ecbb157b318276e62e876
   MJRefresh: 53e3e3219f204425ee6d3e62e8733d3295944cd6
   MMLayout: d559edecd69fbcb348368ba90917e047ab1c544e
-  SDWebImage: 112503ec94a5a2a41869503844a15e8d8f1ead5c
+  SDWebImage: cf6922231e95550934da2ada0f20f2becf2ceba9
   SuperPlayer: 5fba5483acaf772d34a462fddfc92819a2d39410
   TXLiteAVSDK_Player: 7e2f5854f131f0de16ffdefa35081a36bb4f1e93
   WebViewJavascriptBridge: 7f5bc4d3581e672e8f32bd0f812d54bc69bb8e29
 
-PODFILE CHECKSUM: 9edb9488666e77a5d4fd80e922849169334b50c8
+PODFILE CHECKSUM: bd1f79068268b7900caafef75d8552c2525e20a7
 
 COCOAPODS: 1.9.3
