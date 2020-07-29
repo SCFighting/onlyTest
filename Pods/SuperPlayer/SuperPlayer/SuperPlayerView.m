@@ -757,8 +757,8 @@ static UISlider * _volumeSlider;
         return;
     }
     if (!self.isPauseByUser && (self.state != StateStopped && self.state != StateFailed)) {
-        [_vodPlayer pause];
-        self.state = StatePause;
+//        [_vodPlayer pause];
+//        self.state = StatePause;
     }
 }
 
