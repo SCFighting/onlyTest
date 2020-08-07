@@ -13,7 +13,7 @@ target 'onlyTest' do
   pod 'IQKeyboardManager'
   pod 'WebViewJavascriptBridge'
   pod 'MJRefresh'
-
+  pod 'CHTCollectionViewWaterfallLayout'
   target 'onlyTestUITests' do
     # Pods for testing
   end

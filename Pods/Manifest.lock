@@ -18,6 +18,7 @@ PODS:
     - CocoaLumberjack/Core (= 3.6.1)
   - CocoaLumberjack/Core (3.6.1)
   - IQKeyboardManager (6.5.5)
+  - JXCategoryView (1.5.6)
   - Masonry (1.1.0)
   - MBProgressHUD (1.2.0)
   - MJExtension (3.2.2)
@@ -44,6 +45,7 @@ PODS:
 DEPENDENCIES:
   - CocoaLumberjack
   - IQKeyboardManager
+  - JXCategoryView
   - MBProgressHUD
   - MJExtension
   - MJRefresh
@@ -55,6 +57,7 @@ SPEC REPOS:
     - AFNetworking
     - CocoaLumberjack
     - IQKeyboardManager
+    - JXCategoryView
     - Masonry
     - MBProgressHUD
     - MJExtension
@@ -69,6 +72,7 @@ SPEC CHECKSUMS:
   AFNetworking: 7864c38297c79aaca1500c33288e429c3451fdce
   CocoaLumberjack: b17ae15142558d08bbacf69775fa10c4abbebcc9
   IQKeyboardManager: 3a8b9e603f8b0eeaf5f096a1f2b2cfcf121992ef
+  JXCategoryView: 603ccd8277a89b1a73e9cedb9d8ed4b294576008
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
   MBProgressHUD: 3ee5efcc380f6a79a7cc9b363dd669c5e1ae7406
   MJExtension: d9b9c74cbdeb724c1e9ecbb157b318276e62e876
@@ -79,6 +83,6 @@ SPEC CHECKSUMS:
   TXLiteAVSDK_Player: 7e2f5854f131f0de16ffdefa35081a36bb4f1e93
   WebViewJavascriptBridge: 7f5bc4d3581e672e8f32bd0f812d54bc69bb8e29
 
-PODFILE CHECKSUM: bd1f79068268b7900caafef75d8552c2525e20a7
+PODFILE CHECKSUM: 15bae82ace25553b566a3e903bae680b6fea093e
 
 COCOAPODS: 1.9.3
