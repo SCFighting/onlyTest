@@ -25,7 +25,7 @@ static const int ddLogLevel = DDLogLevelError;
     [super viewDidLoad];
     
     [self.view setBackgroundColor:[UIColor whiteColor]];
-    
+    [self testPlayer];
 }
 
 /**测试collectionView*/

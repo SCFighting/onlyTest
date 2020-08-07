@@ -84,7 +84,7 @@ static UISlider * _volumeSlider;
     // 添加通知
     [self addNotifications];
     // 添加手势
-    [self createGesture];
+//    [self createGesture];
     
     self.autoPlay = YES;
 }
