@@ -1486,7 +1486,7 @@ static UISlider * _volumeSlider;
             CGFloat totalTime     = duration;
             CGFloat value         = player.currentPlaybackTime / duration;
 
-            [self.controlView setProgressTime:roundf(self.playCurrentTime)
+            [self.controlView setProgressTime:roundf(self.playCurrentTime) > totalTime ? totalTime : roundf(self.playCurrentTime)
                                     totalTime:totalTime
                                 progressValue:value
                                 playableValue:player.playableDuration / duration];
