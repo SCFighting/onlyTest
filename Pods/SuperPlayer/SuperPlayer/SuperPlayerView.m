@@ -223,7 +223,7 @@ static UISlider * _volumeSlider;
 - (void)addPlayerToFatherView:(UIView *)view {
     [self removeFromSuperview];
     if (view) {
-        [view addSubview:self];
+        [view insertSubview:self atIndex:0];
         [self mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.edges.mas_offset(UIEdgeInsetsZero);
         }];
