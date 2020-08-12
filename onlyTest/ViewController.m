@@ -27,8 +27,8 @@ static const int ddLogLevel = DDLogLevelError;
     [super viewDidLoad];
     
     [self.view setBackgroundColor:[UIColor whiteColor]];
-//    [self testPlayer];
-    [self testTableView];
+    [self testPlayer];
+//    [self testTableView];
     
 }
 
@@ -103,7 +103,7 @@ static const int ddLogLevel = DDLogLevelError;
 //        self.playerView = [[SuperPlayerView alloc] init];
         SuperPlayerModel *playerModel = [[SuperPlayerModel alloc] init];
         // 设置播放地址，直播、点播都可以
-        playerModel.videoURL = @"http://videobj.renrenjiang.cn/record/alilive/8161873093.m3u8";
+        playerModel.videoURL = @"http://1255652068.vod2.myqcloud.com/3ba8fdcavodcq1255652068/238349305285890806366936403/playlist_eof.m3u8";//@"http://videobj.renrenjiang.cn/record/alilive/8161873093.m3u8";
         // 开始播放
         [self.playerView playWithModel:playerModel];
         self.playerView.fatherView = cell.contentView;
@@ -126,10 +126,11 @@ static const int ddLogLevel = DDLogLevelError;
     //    _playerView.delegate = self;
         // 设置父 View，_playerView 会被自动添加到 holderView 下面
         _playerView.fatherView = self.view;
+    _playerView.loop = YES;
 
         SuperPlayerModel *playerModel = [[SuperPlayerModel alloc] init];
         // 设置播放地址，直播、点播都可以
-        playerModel.videoURL = @"http://videobj.renrenjiang.cn/record/alilive/8161873093.m3u8";
+    playerModel.videoURL =@"http://1255652068.vod2.myqcloud.com/3ba8fdcavodcq1255652068/238349305285890806366936403/playlist_eof.m3u8";// @"http://videobj.renrenjiang.cn/record/alilive/8161873093.m3u8";
         // 开始播放
         [_playerView playWithModel:playerModel];
 }

@@ -1376,7 +1376,7 @@ static UISlider * _volumeSlider;
 
 - (void)controlViewSeek:(SuperPlayerControlView *)controlView where:(CGFloat)pos {
     CGFloat dragedSeconds = [self sliderPosToTime:pos];
-    dragedSeconds = roundf(dragedSeconds) > [self playDuration] ? [self playDuration] : roundf(dragedSeconds);
+    dragedSeconds = ceil(dragedSeconds) > [self playDuration] ? [self playDuration] : ceil(dragedSeconds);
     [self seekToTime:dragedSeconds];
     [self fastViewUnavaliable];
 }
@@ -1485,8 +1485,7 @@ static UISlider * _volumeSlider;
             self.playCurrentTime  = player.currentPlaybackTime;
             CGFloat totalTime     = duration;
             CGFloat value         = player.currentPlaybackTime / duration;
-
-            [self.controlView setProgressTime:roundf(self.playCurrentTime) > totalTime ? totalTime : roundf(self.playCurrentTime)
+            [self.controlView setProgressTime:ceil(self.playCurrentTime) > totalTime ? totalTime : ceil(self.playCurrentTime)
                                     totalTime:totalTime
                                 progressValue:value
                                 playableValue:player.playableDuration / duration];
