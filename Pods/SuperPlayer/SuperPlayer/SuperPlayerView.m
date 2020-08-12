@@ -1076,7 +1076,6 @@ static UISlider * _volumeSlider;
             if (self.sumTime < base)
                 self.sumTime = base;
             sliderValue = (self.sumTime - base) / MAX_SHIFT_TIME;
-            NSLog(@"%f",sliderValue);
         }
         [self.fastView showText:timeStr withText:sliderValue];
         [self.controlView setDragProgressTime:draggedTime totalTime:totalTime progressValue:sliderValue];
@@ -1377,6 +1376,7 @@ static UISlider * _volumeSlider;
 
 - (void)controlViewSeek:(SuperPlayerControlView *)controlView where:(CGFloat)pos {
     CGFloat dragedSeconds = [self sliderPosToTime:pos];
+    dragedSeconds = roundf(dragedSeconds) > [self playDuration] ? [self playDuration] : roundf(dragedSeconds);
     [self seekToTime:dragedSeconds];
     [self fastViewUnavaliable];
 }
