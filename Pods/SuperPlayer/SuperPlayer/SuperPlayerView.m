@@ -344,12 +344,12 @@ static UISlider * _volumeSlider;
             self.livePlayer.delegate = self;
         }
         TXLivePlayConfig *config = [[TXLivePlayConfig alloc] init];
-        config.bAutoAdjustCacheTime = NO;
+        config.bAutoAdjustCacheTime = YES;
         config.maxAutoAdjustCacheTime = 5.0f;
-        config.minAutoAdjustCacheTime = 5.0f;
+        config.minAutoAdjustCacheTime = 1.0f;
         config.headers = self.playerConfig.headers;
         [self.livePlayer setConfig:config];
-        
+        NSLog(@"自动模式");
         
         self.livePlayer.enableHWAcceleration = self.playerConfig.hwAcceleration;
         [self.livePlayer startPlay:videoURL type:liveType];
@@ -1109,7 +1109,7 @@ static UISlider * _volumeSlider;
     return YES;
 }
 
-#pragma mark - Setter 
+#pragma mark - Setter
 
 
 /**
