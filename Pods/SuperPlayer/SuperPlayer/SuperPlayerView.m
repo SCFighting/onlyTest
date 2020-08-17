@@ -349,7 +349,6 @@ static UISlider * _volumeSlider;
         config.minAutoAdjustCacheTime = 1.0f;
         config.headers = self.playerConfig.headers;
         [self.livePlayer setConfig:config];
-        NSLog(@"自动模式");
         
         self.livePlayer.enableHWAcceleration = self.playerConfig.hwAcceleration;
         [self.livePlayer startPlay:videoURL type:liveType];
