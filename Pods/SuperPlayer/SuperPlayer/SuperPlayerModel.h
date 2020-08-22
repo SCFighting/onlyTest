@@ -18,6 +18,9 @@
 @class SuperPlayerVideoIdV2;
 @interface SuperPlayerModel : NSObject
 
+/**是否是连麦直播ACC加速流*/
+@property(nonatomic,assign)BOOL ACC;
+
 /// AppId 用于腾讯云点播 File ID 播放及腾讯云直播时移功能
 @property long appId;
 

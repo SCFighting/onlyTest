@@ -1656,8 +1656,15 @@ static UISlider * _volumeSlider;
     NSString *videoURL = self.playerModel.playingDefinitionUrl;
     NSURLComponents *components = [NSURLComponents componentsWithString:videoURL];
     NSString *scheme = [[components scheme] lowercaseString];
-    if ([scheme isEqualToString:@"rtmp"]) {
-        playType = PLAY_TYPE_LIVE_RTMP;
+    if ([scheme isEqualToString:@"rtmp"]){
+        if (_playerModel.ACC)
+        {
+            playType = PLAY_TYPE_LIVE_RTMP_ACC;
+        }
+        else
+        {
+            playType = PLAY_TYPE_LIVE_RTMP;
+        }
     } else if ([scheme hasPrefix:@"http"]
                && [[components path].lowercaseString hasSuffix:@".flv"]) {
         playType = PLAY_TYPE_LIVE_FLV;
