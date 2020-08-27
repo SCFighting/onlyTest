@@ -130,7 +130,7 @@ static const int ddLogLevel = DDLogLevelError;
 
         SuperPlayerModel *playerModel = [[SuperPlayerModel alloc] init];
         // 设置播放地址，直播、点播都可以
-    playerModel.videoURL =@"http://1255652068.vod2.myqcloud.com/3ba8fdcavodcq1255652068/238349305285890806366936403/playlist_eof.m3u8";// @"http://videobj.renrenjiang.cn/record/alilive/8161873093.m3u8";
+    playerModel.videoURL =@"http://aliplay.renrenjiang.cn/alilive/7236305812.flv?auth_key=1613996159-0-0-456b27ecdebe99ec84a2dac17e415661";// @"http://videobj.renrenjiang.cn/record/alilive/8161873093.m3u8";
         // 开始播放
         [_playerView playWithModel:playerModel];
 }
