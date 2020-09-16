@@ -91,6 +91,10 @@ typedef NS_ENUM(NSInteger, SuperPlayerLayoutStyle) {
  */
 @property TXImageSprite *imageSprite;
 /**
+ *videoResolution 视频分辨率，开始播放后获取到
+ */
+@property(nonatomic,assign)CGSize videoResolution;
+/**
  * 打点信息
  */
 @property NSArray<SPVideoFrameDescription *> *keyFrameDescList;

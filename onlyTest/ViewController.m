@@ -121,18 +121,12 @@ static const int ddLogLevel = DDLogLevelError;
 /**测试播放器*/
 -(void)testPlayer
 {
-    _playerView = [[SuperPlayerView alloc] init];
-        // 设置代理，用于接受事件
-    //    _playerView.delegate = self;
-        // 设置父 View，_playerView 会被自动添加到 holderView 下面
-        _playerView.fatherView = self.view;
-    _playerView.loop = YES;
-
-        SuperPlayerModel *playerModel = [[SuperPlayerModel alloc] init];
-        // 设置播放地址，直播、点播都可以
-    playerModel.videoURL =@"http://aliplay.renrenjiang.cn/alilive/7236305812.flv?auth_key=1613996159-0-0-456b27ecdebe99ec84a2dac17e415661";// @"http://videobj.renrenjiang.cn/record/alilive/8161873093.m3u8";
-        // 开始播放
-        [_playerView playWithModel:playerModel];
+    self.playerView.fatherView = self.view;
+    SuperPlayerModel *playerModel = [[SuperPlayerModel alloc] init];
+    // 设置播放地址，直播、点播都可以
+    playerModel.videoURL =@"https://liveplay.renrenjiang.cn/live/17898_7564366_11104066_creator.flv";// @"http://videobj.renrenjiang.cn/record/alilive/8161873093.m3u8";
+    // 开始播放
+    [self.playerView playWithModel:playerModel];
 }
 
 /**测试调试log*/

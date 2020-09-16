@@ -1473,6 +1473,7 @@ static UISlider * _volumeSlider;
                 [self.spinner stopAnimating];
         }
         if (EvtID == PLAY_EVT_RCV_FIRST_I_FRAME) {
+            self.videoResolution = CGSizeMake([self.vodPlayer width], [self.vodPlayer height]);
             if ([self.delegate respondsToSelector:@selector(superPlayerDidStart:)]) {
                 [self.delegate superPlayerDidStart:self];
             }
@@ -1638,6 +1639,7 @@ static UISlider * _volumeSlider;
             }
         }
         if (EvtID == PLAY_EVT_RCV_FIRST_I_FRAME) {
+            self.videoResolution = CGSizeMake([[param objectForKey:@"EVT_WIDTH"] integerValue], [[param objectForKey:@"EVT_HEIGHT"] integerValue]);
             if ([self.delegate respondsToSelector:@selector(superPlayerDidStart:)]) {
                 [self.delegate superPlayerDidStart:self];
             }
