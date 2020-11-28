@@ -14,19 +14,21 @@ PODS:
   - AFNetworking/Serialization (4.0.1)
   - AFNetworking/UIKit (4.0.1):
     - AFNetworking/NSURLSession
-  - CocoaLumberjack (3.6.1):
-    - CocoaLumberjack/Core (= 3.6.1)
-  - CocoaLumberjack/Core (3.6.1)
-  - IQKeyboardManager (6.5.5)
-  - JXCategoryView (1.5.6)
+  - CHTCollectionViewWaterfallLayout (0.9.8):
+    - CHTCollectionViewWaterfallLayout/ObjC (= 0.9.8)
+  - CHTCollectionViewWaterfallLayout/ObjC (0.9.8)
+  - CocoaLumberjack (3.7.0):
+    - CocoaLumberjack/Core (= 3.7.0)
+  - CocoaLumberjack/Core (3.7.0)
+  - IQKeyboardManager (6.5.6)
   - Masonry (1.1.0)
   - MBProgressHUD (1.2.0)
   - MJExtension (3.2.2)
-  - MJRefresh (3.4.3)
+  - MJRefresh (3.5.0)
   - MMLayout (0.3.0)
-  - SDWebImage (5.8.4):
-    - SDWebImage/Core (= 5.8.4)
-  - SDWebImage/Core (5.8.4)
+  - SDWebImage (5.10.0):
+    - SDWebImage/Core (= 5.10.0)
+  - SDWebImage/Core (5.10.0)
   - SuperPlayer (3.2.5):
     - AFNetworking (~> 4.0)
     - Masonry (~> 1.1.0)
@@ -43,9 +45,9 @@ PODS:
   - WebViewJavascriptBridge (6.0.3)
 
 DEPENDENCIES:
+  - CHTCollectionViewWaterfallLayout
   - CocoaLumberjack
   - IQKeyboardManager
-  - JXCategoryView
   - MBProgressHUD
   - MJExtension
   - MJRefresh
@@ -55,9 +57,9 @@ DEPENDENCIES:
 SPEC REPOS:
   trunk:
     - AFNetworking
+    - CHTCollectionViewWaterfallLayout
     - CocoaLumberjack
     - IQKeyboardManager
-    - JXCategoryView
     - Masonry
     - MBProgressHUD
     - MJExtension
@@ -70,19 +72,19 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   AFNetworking: 7864c38297c79aaca1500c33288e429c3451fdce
-  CocoaLumberjack: b17ae15142558d08bbacf69775fa10c4abbebcc9
-  IQKeyboardManager: 3a8b9e603f8b0eeaf5f096a1f2b2cfcf121992ef
-  JXCategoryView: 603ccd8277a89b1a73e9cedb9d8ed4b294576008
+  CHTCollectionViewWaterfallLayout: 5f241d2480ab4939aa0d1ad4981de9eef1fbe60d
+  CocoaLumberjack: e8955b9d337ac307103b0a34fd141c32f27e53c5
+  IQKeyboardManager: 2a6e97afdafc7becf0cb17a9a8d795e3a980717f
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
   MBProgressHUD: 3ee5efcc380f6a79a7cc9b363dd669c5e1ae7406
   MJExtension: d9b9c74cbdeb724c1e9ecbb157b318276e62e876
-  MJRefresh: 53e3e3219f204425ee6d3e62e8733d3295944cd6
+  MJRefresh: 6afc955813966afb08305477dd7a0d9ad5e79a16
   MMLayout: d559edecd69fbcb348368ba90917e047ab1c544e
-  SDWebImage: cf6922231e95550934da2ada0f20f2becf2ceba9
+  SDWebImage: 9169792e9eec3e45bba2a0c02f74bf8bd922d1ee
   SuperPlayer: 5fba5483acaf772d34a462fddfc92819a2d39410
   TXLiteAVSDK_Player: 7e2f5854f131f0de16ffdefa35081a36bb4f1e93
   WebViewJavascriptBridge: 7f5bc4d3581e672e8f32bd0f812d54bc69bb8e29
 
-PODFILE CHECKSUM: 15bae82ace25553b566a3e903bae680b6fea093e
+PODFILE CHECKSUM: d5bd03106816247c67bc5a2bd1b03bcac77e0c39
 
-COCOAPODS: 1.9.3
+COCOAPODS: 1.10.0

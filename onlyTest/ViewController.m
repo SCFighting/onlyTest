@@ -7,6 +7,7 @@
 //
 
 #import "ViewController.h"
+#import "TestController.h"
 #import <SuperPlayer/SuperPlayer.h>
 #import <CocoaLumberjack/CocoaLumberjack.h>
 #import <Masonry/Masonry.h>
@@ -28,8 +29,25 @@ static const int ddLogLevel = DDLogLevelError;
     
     [self.view setBackgroundColor:[UIColor whiteColor]];
     [self testPlayer];
+    [self.navigationItem setRightBarButtonItem:[[UIBarButtonItem alloc] initWithTitle:@"小窗" style:UIBarButtonItemStyleDone target:self action:@selector(samll)]];
 //    [self testTableView];
     
+}
+
+-(void)samll
+{
+    SuperPlayerWindowShared.superPlayer=self.playerView;
+    [SuperPlayerWindowShared show];
+    [SuperPlayerWindowShared setBackHandler:^{
+        [SuperPlayerWindowShared hide];
+        [self.navigationController popViewControllerAnimated:YES];
+    }];
+    [SuperPlayerWindowShared setCloseHandler:^{
+        [self.playerView pause];
+    }];
+    
+    TestController *vc = [[TestController alloc] init];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 -(void)testTableView
@@ -124,7 +142,7 @@ static const int ddLogLevel = DDLogLevelError;
     self.playerView.fatherView = self.view;
     SuperPlayerModel *playerModel = [[SuperPlayerModel alloc] init];
     // 设置播放地址，直播、点播都可以
-    playerModel.videoURL =@"https://liveplay.renrenjiang.cn/live/17898_7564366_11104066_creator.flv";// @"http://videobj.renrenjiang.cn/record/alilive/8161873093.m3u8";
+    playerModel.videoURL =@"http://1255652068.vod2.myqcloud.com/3ba8fdcavodcq1255652068/4e7c8eb85285890809906154974/playlist_eof.m3u8";
     // 开始播放
     [self.playerView playWithModel:playerModel];
 }

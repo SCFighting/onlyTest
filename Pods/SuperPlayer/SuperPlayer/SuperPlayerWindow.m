@@ -14,12 +14,11 @@
 #import "UIView+Fade.h"
 #import "TXLiteAVSDK.h"
 
-#define FLOAT_VIEW_WIDTH  200
-#define FLOAT_VIEW_HEIGHT 112
+#define FLOAT_VIEW_WIDTH  112
+#define FLOAT_VIEW_HEIGHT 200
 
 @interface SuperPlayerWindow()<TXVodPlayListener>
 @property (weak) UIView *origFatherView;
-@property CGRect floatViewRect;
 @end
 
 @implementation SuperPlayerWindow {
@@ -58,22 +57,10 @@
     [_rootView addSubview:closeBtn];
     [closeBtn sizeToFit];
     _closeBtn = closeBtn;
-    
-//    UIButton *backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-//    backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-//    [backBtn setImage:SuperPlayerImage(@"fullscreen") forState:UIControlStateNormal];
-//    [backBtn addTarget:self action:@selector(backBtnClick:) forControlEvents:UIControlEventTouchUpInside];
-//    [_rootView addSubview:backBtn];
-//    [backBtn sizeToFit];
-//    _backBtn = backBtn;
-    
-    CGRect rect = CGRectMake(ScreenWidth-FLOAT_VIEW_WIDTH, ScreenHeight-FLOAT_VIEW_HEIGHT, FLOAT_VIEW_WIDTH, FLOAT_VIEW_HEIGHT);
-    
-    if (IsIPhoneX) {
-        rect.origin.y -= 44;
-    }
-    self.floatViewRect = rect;
-    
+    [_closeBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.mas_equalTo(_rootView.mas_right).offset(-5);
+        make.top.mas_equalTo(_rootView.mas_top).offset(5);
+    }];
     self.hidden = YES;
     
     return self;
@@ -81,7 +68,7 @@
 
 
 - (void)show {
-    _rootView.frame = self.floatViewRect;
+    _rootView.frame = self.superPlayer.fatherView.frame;
     [self addSubview:_rootView];
     self.hidden = NO;
     
@@ -89,22 +76,17 @@
     if (self.origFatherView != _rootView) {
         self.superPlayer.fatherView = _rootView;
     }
-    
-//    [self.superPlayer.controlView fadeOut:0.01];
-    
     [_rootView bringSubviewToFront:_backBtn];
     [_rootView bringSubviewToFront:_closeBtn];
-//    _backBtn.m_top(8).m_left(8);
-    _closeBtn.mm_width(42).mm_height(42).mm_top(0).mm_right(0);
-    
+    [UIView animateWithDuration:0.3 delay:0 options:UIViewAnimationOptionCurveEaseIn animations:^{
+        _rootView.frame = CGRectMake(ScreenWidth-FLOAT_VIEW_WIDTH-10, ScreenHeight-FLOAT_VIEW_HEIGHT-100, FLOAT_VIEW_WIDTH, FLOAT_VIEW_HEIGHT);
+    } completion:^(BOOL finished) {
+        
+    }];
     _isShowing = YES;
-    
-    [DataReport report:@"floatmode" param:nil];
 }
 
-- (void)hide {
-    self.floatViewRect = _rootView.frame;
-    
+- (void)hide {    
     [_rootView removeFromSuperview];
     self.hidden = YES;
     
