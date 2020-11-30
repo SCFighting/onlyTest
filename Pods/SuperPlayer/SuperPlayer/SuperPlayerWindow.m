@@ -79,7 +79,14 @@
     [_rootView bringSubviewToFront:_backBtn];
     [_rootView bringSubviewToFront:_closeBtn];
     [UIView animateWithDuration:0.3 delay:0 options:UIViewAnimationOptionCurveEaseIn animations:^{
-        _rootView.frame = CGRectMake(ScreenWidth-FLOAT_VIEW_WIDTH-10, ScreenHeight-FLOAT_VIEW_HEIGHT-100, FLOAT_VIEW_WIDTH, FLOAT_VIEW_HEIGHT);
+        if (self.superPlayer.videoResolution.width>self.superPlayer.videoResolution.height) //横屏视频
+        {
+            _rootView.frame = CGRectMake(MIN(ScreenWidth, ScreenHeight)-FLOAT_VIEW_HEIGHT-10, MAX(ScreenWidth, ScreenHeight)-FLOAT_VIEW_WIDTH-100, FLOAT_VIEW_HEIGHT, FLOAT_VIEW_WIDTH);
+        }
+        else //竖屏视频
+        {
+            _rootView.frame = CGRectMake(MIN(ScreenWidth, ScreenHeight)-FLOAT_VIEW_WIDTH-10, MAX(ScreenWidth, ScreenHeight)-FLOAT_VIEW_HEIGHT-100, FLOAT_VIEW_WIDTH, FLOAT_VIEW_HEIGHT);
+        }
     } completion:^(BOOL finished) {
         
     }];
