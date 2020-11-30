@@ -14,8 +14,8 @@
 #import "UIView+Fade.h"
 #import "TXLiteAVSDK.h"
 
-#define FLOAT_VIEW_WIDTH  112
-#define FLOAT_VIEW_HEIGHT 200
+#define FLOAT_VIEW_WIDTH  95
+#define FLOAT_VIEW_HEIGHT 95*16/9
 
 @interface SuperPlayerWindow()<TXVodPlayListener>
 @property (weak) UIView *origFatherView;
@@ -45,6 +45,8 @@
     self.rootViewController.view.userInteractionEnabled = NO;
     
     _rootView = [[UIView alloc] initWithFrame:CGRectZero];
+    [_rootView.layer setCornerRadius:4.0];
+    [_rootView setClipsToBounds:YES];
     _rootView.backgroundColor = [UIColor blackColor];
     
     UIPanGestureRecognizer *panGesture = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(panGestureRecognizer:)];
@@ -52,14 +54,14 @@
     
     UIButton *closeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     closeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [closeBtn setImage:SuperPlayerImage(@"close") forState:UIControlStateNormal];
+    [closeBtn setImage:[UIImage imageNamed:@"selectclasspurchaseclose"] forState:UIControlStateNormal];
     [closeBtn addTarget:self action:@selector(closeBtnClick:) forControlEvents:UIControlEventTouchUpInside];
     [_rootView addSubview:closeBtn];
     [closeBtn sizeToFit];
     _closeBtn = closeBtn;
     [_closeBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.mas_equalTo(_rootView.mas_right).offset(-5);
-        make.top.mas_equalTo(_rootView.mas_top).offset(5);
+        make.right.top.mas_equalTo(_rootView);
+        make.size.mas_equalTo(CGSizeMake(20, 20));
     }];
     self.hidden = YES;
     
