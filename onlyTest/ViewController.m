@@ -11,6 +11,11 @@
 #import <SuperPlayer/SuperPlayer.h>
 #import <CocoaLumberjack/CocoaLumberjack.h>
 #import <Masonry/Masonry.h>
+#import <objc/runtime.h>
+#import <objc/message.h>
+#import "UIView+layout.h"
+//#import "UIView+wwww.h"
+//#import "UIView+layout.h"
 #ifdef DEBUG
 static const int ddLogLevel = DDLogLevelVerbose;
 #else
@@ -20,18 +25,37 @@ static const int ddLogLevel = DDLogLevelError;
 @property(nonatomic,strong)UITableView *tableView;
 @property(nonatomic,strong)SuperPlayerView *playerView;
 @property(nonatomic,strong)UICollectionView *collectionView;
+@property (strong, nonatomic) dispatch_queue_t queue;
 @end
 
 @implementation ViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    dispatch_async(self.queue, ^{
+        for (int i = 0; i <1000; i++) {
+            
+            [self testGroup];
+        }
+    });
     
-    [self.view setBackgroundColor:[UIColor whiteColor]];
-    [self testPlayer];
-    [self.navigationItem setRightBarButtonItem:[[UIBarButtonItem alloc] initWithTitle:@"小窗" style:UIBarButtonItemStyleDone target:self action:@selector(samll)]];
-//    [self testTableView];
-    
+}
+
+-(void)testGroup
+{
+//    dispatch_async(self.queue, ^{
+        @synchronized (self) {
+    dispatch_async(dispatch_get_main_queue(), ^{
+        for (int i = 0; i < 1000; i++) {
+            NSLog(@"%d\n",i);
+        }
+    });
+    NSLog(@"完成");
+            
+        }
+//        
+//    });
 }
 
 -(void)samll
@@ -142,7 +166,7 @@ static const int ddLogLevel = DDLogLevelError;
     self.playerView.fatherView = self.view;
     SuperPlayerModel *playerModel = [[SuperPlayerModel alloc] init];
     // 设置播放地址，直播、点播都可以
-    playerModel.videoURL =@"http://1255652068.vod2.myqcloud.com/3ba8fdcavodcq1255652068/4e7c8eb85285890809906154974/playlist_eof.m3u8";
+    playerModel.videoURL =@"http://aliplay.renrenjiang.cn/alilive/6000982931.flv?auth_key=1630315823-0-0-02b99f5145bf54a80bcf941145a89f21";
     // 开始播放
     [self.playerView playWithModel:playerModel];
 }

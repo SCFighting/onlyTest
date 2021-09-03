@@ -17,18 +17,18 @@ PODS:
   - CHTCollectionViewWaterfallLayout (0.9.8):
     - CHTCollectionViewWaterfallLayout/ObjC (= 0.9.8)
   - CHTCollectionViewWaterfallLayout/ObjC (0.9.8)
-  - CocoaLumberjack (3.7.0):
-    - CocoaLumberjack/Core (= 3.7.0)
-  - CocoaLumberjack/Core (3.7.0)
+  - CocoaLumberjack (3.7.2):
+    - CocoaLumberjack/Core (= 3.7.2)
+  - CocoaLumberjack/Core (3.7.2)
   - IQKeyboardManager (6.5.6)
   - Masonry (1.1.0)
   - MBProgressHUD (1.2.0)
-  - MJExtension (3.2.2)
-  - MJRefresh (3.5.0)
+  - MJExtension (3.3.0)
+  - MJRefresh (3.7.2)
   - MMLayout (0.3.0)
-  - SDWebImage (5.10.0):
-    - SDWebImage/Core (= 5.10.0)
-  - SDWebImage/Core (5.10.0)
+  - SDWebImage (5.11.1):
+    - SDWebImage/Core (= 5.11.1)
+  - SDWebImage/Core (5.11.1)
   - SuperPlayer (3.2.5):
     - AFNetworking (~> 4.0)
     - Masonry (~> 1.1.0)
@@ -73,14 +73,14 @@ SPEC REPOS:
 SPEC CHECKSUMS:
   AFNetworking: 7864c38297c79aaca1500c33288e429c3451fdce
   CHTCollectionViewWaterfallLayout: 5f241d2480ab4939aa0d1ad4981de9eef1fbe60d
-  CocoaLumberjack: e8955b9d337ac307103b0a34fd141c32f27e53c5
+  CocoaLumberjack: b7e05132ff94f6ae4dfa9d5bce9141893a21d9da
   IQKeyboardManager: 2a6e97afdafc7becf0cb17a9a8d795e3a980717f
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
   MBProgressHUD: 3ee5efcc380f6a79a7cc9b363dd669c5e1ae7406
-  MJExtension: d9b9c74cbdeb724c1e9ecbb157b318276e62e876
-  MJRefresh: 6afc955813966afb08305477dd7a0d9ad5e79a16
+  MJExtension: 01704cca2b60a214c10761b6491eab74069d68a9
+  MJRefresh: 30997d30b347c8e9508a4db11e3a690da0c9b85a
   MMLayout: d559edecd69fbcb348368ba90917e047ab1c544e
-  SDWebImage: 9169792e9eec3e45bba2a0c02f74bf8bd922d1ee
+  SDWebImage: a7f831e1a65eb5e285e3fb046a23fcfbf08e696d
   SuperPlayer: 5fba5483acaf772d34a462fddfc92819a2d39410
   TXLiteAVSDK_Player: 7e2f5854f131f0de16ffdefa35081a36bb4f1e93
   WebViewJavascriptBridge: 7f5bc4d3581e672e8f32bd0f812d54bc69bb8e29

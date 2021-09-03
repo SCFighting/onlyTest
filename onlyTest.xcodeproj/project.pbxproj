@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		521958FF2628137E0028D3D5 /* UIView+layout.m in Sources */ = {isa = PBXBuildFile; fileRef = 521958FE2628137E0028D3D5 /* UIView+layout.m */; };
+		52195904262813E80028D3D5 /* TestView.m in Sources */ = {isa = PBXBuildFile; fileRef = 52195903262813E80028D3D5 /* TestView.m */; };
+		5219594226282F9A0028D3D5 /* UIView+wwww.m in Sources */ = {isa = PBXBuildFile; fileRef = 5219594126282F9A0028D3D5 /* UIView+wwww.m */; };
+		5219594D262830D80028D3D5 /* TestView+sss.m in Sources */ = {isa = PBXBuildFile; fileRef = 52195949262830D70028D3D5 /* TestView+sss.m */; };
 		5238EC0D25721E9100AF5BD9 /* TestController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5238EC0C25721E9100AF5BD9 /* TestController.m */; };
 		52998DD424ADB93F00F3CF18 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 52998DD324ADB93F00F3CF18 /* AppDelegate.m */; };
 		52998DDA24ADB93F00F3CF18 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52998DD924ADB93F00F3CF18 /* ViewController.m */; };
@@ -30,6 +34,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		521958FD2628137E0028D3D5 /* UIView+layout.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIView+layout.h"; sourceTree = "<group>"; };
+		521958FE2628137E0028D3D5 /* UIView+layout.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIView+layout.m"; sourceTree = "<group>"; };
+		52195902262813E80028D3D5 /* TestView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TestView.h; sourceTree = "<group>"; };
+		52195903262813E80028D3D5 /* TestView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TestView.m; sourceTree = "<group>"; };
+		5219594026282F9A0028D3D5 /* UIView+wwww.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIView+wwww.h"; sourceTree = "<group>"; };
+		5219594126282F9A0028D3D5 /* UIView+wwww.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIView+wwww.m"; sourceTree = "<group>"; };
+		52195949262830D70028D3D5 /* TestView+sss.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "TestView+sss.m"; sourceTree = "<group>"; };
+		5219594A262830D70028D3D5 /* TestView+sss.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TestView+sss.h"; sourceTree = "<group>"; };
 		5238EC0B25721E9100AF5BD9 /* TestController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TestController.h; sourceTree = "<group>"; };
 		5238EC0C25721E9100AF5BD9 /* TestController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TestController.m; sourceTree = "<group>"; };
 		52998DCF24ADB93F00F3CF18 /* onlyTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = onlyTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -96,6 +108,8 @@
 		52998DD124ADB93F00F3CF18 /* onlyTest */ = {
 			isa = PBXGroup;
 			children = (
+				5219594A262830D70028D3D5 /* TestView+sss.h */,
+				52195949262830D70028D3D5 /* TestView+sss.m */,
 				52998DD224ADB93F00F3CF18 /* AppDelegate.h */,
 				52998DD324ADB93F00F3CF18 /* AppDelegate.m */,
 				52998DD824ADB93F00F3CF18 /* ViewController.h */,
@@ -107,6 +121,12 @@
 				52998DE424ADB94300F3CF18 /* main.m */,
 				5238EC0B25721E9100AF5BD9 /* TestController.h */,
 				5238EC0C25721E9100AF5BD9 /* TestController.m */,
+				5219594026282F9A0028D3D5 /* UIView+wwww.h */,
+				5219594126282F9A0028D3D5 /* UIView+wwww.m */,
+				521958FD2628137E0028D3D5 /* UIView+layout.h */,
+				521958FE2628137E0028D3D5 /* UIView+layout.m */,
+				52195902262813E80028D3D5 /* TestView.h */,
+				52195903262813E80028D3D5 /* TestView.m */,
 			);
 			path = onlyTest;
 			sourceTree = "<group>";
@@ -361,10 +381,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5219594D262830D80028D3D5 /* TestView+sss.m in Sources */,
 				52998DDA24ADB93F00F3CF18 /* ViewController.m in Sources */,
 				52998DD424ADB93F00F3CF18 /* AppDelegate.m in Sources */,
+				52195904262813E80028D3D5 /* TestView.m in Sources */,
 				52998DE524ADB94300F3CF18 /* main.m in Sources */,
 				5238EC0D25721E9100AF5BD9 /* TestController.m in Sources */,
+				5219594226282F9A0028D3D5 /* UIView+wwww.m in Sources */,
+				521958FF2628137E0028D3D5 /* UIView+layout.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
