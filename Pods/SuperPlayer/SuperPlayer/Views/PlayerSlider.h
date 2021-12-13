@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "SQYKGESlider.h"
 @interface PlayerPoint : NSObject
 @property GLfloat where;
 @property UIControl  *holder;
@@ -19,7 +19,7 @@
 - (void)onPlayerPointSelected:(PlayerPoint *)point;
 @end
 
-@interface PlayerSlider : UISlider
+@interface PlayerSlider : SQYKGESlider
 
 @property NSMutableArray<PlayerPoint *> *pointArray;
 @property UIProgressView *progressView;

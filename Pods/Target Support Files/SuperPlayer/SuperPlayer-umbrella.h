@@ -41,6 +41,7 @@
 #import "UIView+Fade.h"
 #import "MMMaterialDesignSpinner.h"
 #import "PlayerSlider.h"
+#import "SQYKGESlider.h"
 #import "SuperPlayerFastView.h"
 #import "SuperPlayerSettingsView.h"
 
