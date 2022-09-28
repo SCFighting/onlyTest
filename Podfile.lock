@@ -1,48 +1,38 @@
 PODS:
-  - AFNetworking (4.0.1):
-    - AFNetworking/NSURLSession (= 4.0.1)
-    - AFNetworking/Reachability (= 4.0.1)
-    - AFNetworking/Security (= 4.0.1)
-    - AFNetworking/Serialization (= 4.0.1)
-    - AFNetworking/UIKit (= 4.0.1)
-  - AFNetworking/NSURLSession (4.0.1):
-    - AFNetworking/Reachability
-    - AFNetworking/Security
-    - AFNetworking/Serialization
-  - AFNetworking/Reachability (4.0.1)
-  - AFNetworking/Security (4.0.1)
-  - AFNetworking/Serialization (4.0.1)
-  - AFNetworking/UIKit (4.0.1):
-    - AFNetworking/NSURLSession
-  - CHTCollectionViewWaterfallLayout (0.9.8):
-    - CHTCollectionViewWaterfallLayout/ObjC (= 0.9.8)
-  - CHTCollectionViewWaterfallLayout/ObjC (0.9.8)
-  - CocoaLumberjack (3.7.2):
-    - CocoaLumberjack/Core (= 3.7.2)
-  - CocoaLumberjack/Core (3.7.2)
-  - IQKeyboardManager (6.5.6)
-  - Masonry (1.1.0)
+  - CHTCollectionViewWaterfallLayout (0.9.10):
+    - CHTCollectionViewWaterfallLayout/Swift (= 0.9.10)
+  - CHTCollectionViewWaterfallLayout/Swift (0.9.10)
+  - CocoaLumberjack (3.7.4):
+    - CocoaLumberjack/Core (= 3.7.4)
+  - CocoaLumberjack/Core (3.7.4)
+  - IQKeyboardManager (6.5.10)
+  - libwebp (1.2.3):
+    - libwebp/demux (= 1.2.3)
+    - libwebp/mux (= 1.2.3)
+    - libwebp/webp (= 1.2.3)
+  - libwebp/demux (1.2.3):
+    - libwebp/webp
+  - libwebp/mux (1.2.3):
+    - libwebp/demux
+  - libwebp/webp (1.2.3)
   - MBProgressHUD (1.2.0)
-  - MJExtension (3.3.0)
-  - MJRefresh (3.7.2)
-  - MMLayout (0.3.0)
-  - SDWebImage (5.11.1):
-    - SDWebImage/Core (= 5.11.1)
-  - SDWebImage/Core (5.11.1)
-  - SuperPlayer (3.2.5):
-    - AFNetworking (~> 4.0)
-    - Masonry (~> 1.1.0)
-    - MMLayout (~> 0.3.0)
-    - SDWebImage (~> 5.0)
-    - SuperPlayer/Player (= 3.2.5)
-  - SuperPlayer/Player (3.2.5):
-    - AFNetworking (~> 4.0)
-    - Masonry (~> 1.1.0)
-    - MMLayout (~> 0.3.0)
-    - SDWebImage (~> 5.0)
-    - TXLiteAVSDK_Player (= 7.2.8932)
-  - TXLiteAVSDK_Player (7.2.8932)
+  - MJExtension (3.4.1)
+  - MJRefresh (3.7.5)
+  - SDWebImage (5.13.2):
+    - SDWebImage/Core (= 5.13.2)
+  - SDWebImage/Core (5.13.2)
+  - SDWebImageWebPCoder (0.9.1):
+    - libwebp (~> 1.0)
+    - SDWebImage/Core (~> 5.13)
+  - TZImagePickerController (3.8.3):
+    - TZImagePickerController/Basic (= 3.8.3)
+    - TZImagePickerController/Location (= 3.8.3)
+  - TZImagePickerController/Basic (3.8.3)
+  - TZImagePickerController/Location (3.8.3)
   - WebViewJavascriptBridge (6.0.3)
+  - YYImage/Core (1.0.4)
+  - YYImage/WebP (1.0.4):
+    - YYImage/Core
 
 DEPENDENCIES:
   - CHTCollectionViewWaterfallLayout
@@ -51,40 +41,41 @@ DEPENDENCIES:
   - MBProgressHUD
   - MJExtension
   - MJRefresh
-  - SuperPlayer (= 3.2.5)
+  - SDWebImage
+  - SDWebImageWebPCoder
+  - TZImagePickerController
   - WebViewJavascriptBridge
+  - YYImage/WebP
 
 SPEC REPOS:
   trunk:
-    - AFNetworking
     - CHTCollectionViewWaterfallLayout
     - CocoaLumberjack
     - IQKeyboardManager
-    - Masonry
+    - libwebp
     - MBProgressHUD
     - MJExtension
     - MJRefresh
-    - MMLayout
     - SDWebImage
-    - SuperPlayer
-    - TXLiteAVSDK_Player
+    - SDWebImageWebPCoder
+    - TZImagePickerController
     - WebViewJavascriptBridge
+    - YYImage
 
 SPEC CHECKSUMS:
-  AFNetworking: 7864c38297c79aaca1500c33288e429c3451fdce
-  CHTCollectionViewWaterfallLayout: 5f241d2480ab4939aa0d1ad4981de9eef1fbe60d
-  CocoaLumberjack: b7e05132ff94f6ae4dfa9d5bce9141893a21d9da
-  IQKeyboardManager: 2a6e97afdafc7becf0cb17a9a8d795e3a980717f
-  Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
+  CHTCollectionViewWaterfallLayout: b989a459788d7657ac010e03bc0f7eedca95a420
+  CocoaLumberjack: 543c79c114dadc3b1aba95641d8738b06b05b646
+  IQKeyboardManager: 45a1fa55c1a5b02c61ac0fd7fd5b62bb4ad20d97
+  libwebp: 60305b2e989864154bd9be3d772730f08fc6a59c
   MBProgressHUD: 3ee5efcc380f6a79a7cc9b363dd669c5e1ae7406
-  MJExtension: 01704cca2b60a214c10761b6491eab74069d68a9
-  MJRefresh: 30997d30b347c8e9508a4db11e3a690da0c9b85a
-  MMLayout: d559edecd69fbcb348368ba90917e047ab1c544e
-  SDWebImage: a7f831e1a65eb5e285e3fb046a23fcfbf08e696d
-  SuperPlayer: 5fba5483acaf772d34a462fddfc92819a2d39410
-  TXLiteAVSDK_Player: 7e2f5854f131f0de16ffdefa35081a36bb4f1e93
+  MJExtension: 21c5f6f8c4d5d8844b7ae8fbae08fed0b501f961
+  MJRefresh: fdf5e979eb406a0341468932d1dfc8b7f9fce961
+  SDWebImage: 72f86271a6f3139cc7e4a89220946489d4b9a866
+  SDWebImageWebPCoder: 18503de6621dd2c420d680e33d46bf8e1d5169b0
+  TZImagePickerController: e9909edbadf7381140efc5b5c9f5bdbfd630f7d4
   WebViewJavascriptBridge: 7f5bc4d3581e672e8f32bd0f812d54bc69bb8e29
+  YYImage: 1e1b62a9997399593e4b9c4ecfbbabbf1d3f3b54
 
-PODFILE CHECKSUM: d5bd03106816247c67bc5a2bd1b03bcac77e0c39
+PODFILE CHECKSUM: 2ec9000d70a94ef5daa5faf425f76c793a153aad
 
-COCOAPODS: 1.11.2
+COCOAPODS: 1.11.3

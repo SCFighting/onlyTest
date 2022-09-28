@@ -18,6 +18,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property NSString *title;
 /// 播放地址
 @property NSString *url;
+
+@property (nonatomic, assign) int qualityIndex;
+
+@property (nonatomic, assign) NSInteger birtateIndex;
 @end
 
 NS_ASSUME_NONNULL_END

@@ -12,21 +12,19 @@
     NSURL *_url;
 }
 
-- (instancetype)initWithString:(NSString *)url
-{
+- (instancetype)initWithString:(NSString *)url {
     self = [super init];
-    
+
     _url = [NSURL URLWithString:url];
-    
+
     return self;
 }
 
-- (NSInteger)bizid
-{
+- (NSInteger)bizid {
     NSString *bizId = nil;
     for (NSString *param in [_url.query componentsSeparatedByString:@"&"]) {
         NSArray *elts = [param componentsSeparatedByString:@"="];
-        if([elts count] < 2) continue;
+        if ([elts count] < 2) continue;
         if ([[elts firstObject] isEqualToString:@"bizid"]) {
             bizId = [elts lastObject];
             break;
@@ -36,7 +34,11 @@
         bizId = [[_url host] componentsSeparatedByString:@"."].firstObject;
     }
 
-    return [bizId integerValue];
+    NSInteger bizIdNum = [bizId integerValue];
+    if (bizIdNum <= 0) {
+        bizIdNum = -1;
+    }
+    return bizIdNum;
 }
 
 @end

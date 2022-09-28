@@ -7,6 +7,7 @@
 //
 
 #import "SPPlayCGIParser.h"
+
 #import "SPPlayCGIParser_V2.h"
 #import "SPPlayCGIParser_V4.h"
 
@@ -14,9 +15,9 @@
 + (Class<SPPlayCGIParserProtocol>)parserOfVersion:(NSInteger)version {
     if (version == 2) {
         return [SPPlayCGIParser_V2 class];
-    } else if (version == 4) {
+    } else {
         return [SPPlayCGIParser_V4 class];
     }
-    return Nil;
 }
 @end
+

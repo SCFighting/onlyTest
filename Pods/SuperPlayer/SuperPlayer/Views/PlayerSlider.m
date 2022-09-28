@@ -7,26 +7,27 @@
 //
 
 #import "PlayerSlider.h"
+
 #import <Masonry/Masonry.h>
+
 #import "UIView+MMLayout.h"
 
 @implementation PlayerPoint
 - (instancetype)init {
     self = [super init];
-    
-    self.holder = [[UIControl alloc] initWithFrame:CGRectMake(0, 0, 30, 30)];
-    //    view.backgroundColor = [UIColor yellowColor];
-    UIView *inter = [[UIView alloc] initWithFrame:CGRectMake(14, 14, 2, 2)];
+
+    self.holder           = [[UIControl alloc] initWithFrame:CGRectMake(0, 0, 30, 30)];
+    UIView *inter         = [[UIView alloc] initWithFrame:CGRectMake(14, 14, 2, 2)];
     inter.backgroundColor = [UIColor whiteColor];
     [self.holder addSubview:inter];
     self.holder.userInteractionEnabled = YES;
-    
+
     return self;
 }
 @end
 
-@interface PlayerSlider()
-@property UIImageView    *tracker;
+@interface PlayerSlider ()
+@property UIImageView *tracker;
 @end
 
 @implementation PlayerSlider
@@ -55,13 +56,14 @@
     _progressView                   = [[UIProgressView alloc] initWithProgressViewStyle:UIProgressViewStyleDefault];
     _progressView.progressTintColor = [UIColor colorWithRed:1 green:1 blue:1 alpha:0.3];
     _progressView.trackTintColor    = [UIColor clearColor];
-    
+
     [self addSubview:_progressView];
-    
+
     self.pointArray = [NSMutableArray new];
-    self.maximumValue = 1;
+
+    self.maximumValue          = 1;
     self.maximumTrackTintColor = [UIColor colorWithRed:0.5 green:0.5 blue:0.5 alpha:0.5];
-    
+
     [_progressView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self);
         make.right.equalTo(self);
@@ -70,7 +72,7 @@
     }];
     _progressView.layer.masksToBounds = YES;
     _progressView.layer.cornerRadius  = 1;
-
+    self.progressView.backgroundColor = [UIColor.blackColor colorWithAlphaComponent:0.8];
     [self sendSubviewToBack:self.progressView];
 }
 
@@ -79,18 +81,21 @@
     self.tracker = self.subviews.lastObject;
     for (PlayerPoint *point in self.pointArray) {
         point.holder.center = [self holderCenter:point.where];
-        [self insertSubview:point.holder belowSubview:self.tracker];
+        if (@available(iOS 14.0, *)) {
+            [self addSubview:point.holder];
+        } else {
+            // Fallback on earlier versions
+            [self insertSubview:point.holder belowSubview:self.tracker];
+        }
     }
 }
 
-- (PlayerPoint *)addPoint:(GLfloat)where
-{
+- (PlayerPoint *)addPoint:(GLfloat)where {
     for (PlayerPoint *pp in self.pointArray) {
-        if (fabsf(pp.where - where) < 0.0001)
-            return pp;
+        if (fabsf(pp.where - where) < 0.0001) return pp;
     }
-    PlayerPoint *point = [PlayerPoint new];
-    point.where = where;
+    PlayerPoint *point  = [PlayerPoint new];
+    point.where         = where;
     point.holder.center = [self holderCenter:where];
     point.holder.hidden = _hiddenPoints;
     [self.pointArray addObject:point];
@@ -107,14 +112,12 @@
     NSLog(@"clokc");
     for (PlayerPoint *point in self.pointArray) {
         if (point.holder == sender) {
-            if ([self.delegate respondsToSelector:@selector(onPlayerPointSelected:)])
-                [self.delegate onPlayerPointSelected:point];
+            if ([self.delegate respondsToSelector:@selector(onPlayerPointSelected:)]) [self.delegate onPlayerPointSelected:point];
         }
     }
 }
 
-- (void)setHiddenPoints:(BOOL)hiddenPoints
-{
+- (void)setHiddenPoints:(BOOL)hiddenPoints {
     for (PlayerPoint *point in self.pointArray) {
         point.holder.hidden = hiddenPoints;
     }
@@ -122,16 +125,16 @@
 }
 
 //- (CGRect)thumbRectForBounds:(CGRect)bounds trackRect:(CGRect)rect value:(float)value {
-//    
+//
 //    rect.origin.x = rect.origin.x - 10 ;
-//    
+//
 //    rect.size.width = rect.size.width +20;
-//    
+//
 //    return CGRectInset ([super thumbRectForBounds:bounds
 //                                        trackRect:rect
 //                                            value:value],
 //                        10 ,
 //                        10);
-//    
+//
 //}
 @end

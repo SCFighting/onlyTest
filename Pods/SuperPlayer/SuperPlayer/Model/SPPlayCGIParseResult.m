@@ -7,7 +7,15 @@
 //
 
 #import "SPPlayCGIParseResult.h"
+
 #import "TXImageSprite.h"
 
 @implementation SPPlayCGIParseResult
++ (SPDrmType)drmTypeFromString:(NSString *)typeString {
+    BOOL isSimpleAES = [typeString caseInsensitiveCompare:@"SimpleAES"] == NSOrderedSame;
+    if (isSimpleAES) {
+        return SPDrmTypeSimpleAES;
+    }
+    return SPDrmTypeNone;
+}
 @end

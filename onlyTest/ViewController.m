@@ -14,6 +14,8 @@
 #import <objc/runtime.h>
 #import <objc/message.h>
 #import "UIView+layout.h"
+#import <SDWebImage/SDWebImage.h>
+#import <SDWebImageWebPCoder/SDWebImageWebPCoder.h>
 //#import "UIView+wwww.h"
 //#import "UIView+layout.h"
 #ifdef DEBUG
@@ -32,14 +34,24 @@ static const int ddLogLevel = DDLogLevelError;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
-    dispatch_async(self.queue, ^{
-        for (int i = 0; i <1000; i++) {
-            
-            [self testGroup];
-        }
-    });
-    
+    self.view.backgroundColor = UIColor.whiteColor;
+    UIImageView *imageView = [[UIImageView alloc] init];
+    imageView.backgroundColor = UIColor.redColor;
+    [self.view addSubview:imageView];
+    [imageView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.mas_equalTo(self.view);
+    }];
+    SDImageWebPCoder *webPCoder = [SDImageWebPCoder sharedCoder];
+    [[SDImageCodersManager sharedManager] addCoder:webPCoder];
+    [imageView sd_setImageWithURL:[NSURL URLWithString:@"http://qcloudvod.renrenjiang.cn/80ddb38fvodtransgzp1255652068/d8cf9f0d387702306217428237/animatedGraphics/animatedGraphics_95634.webp?v=2"]];
+//    self.queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+//    dispatch_async(self.queue, ^{
+//        for (int i = 0; i <1000; i++) {
+//
+//            [self testGroup];
+//        }
+//    });
+//    [self testPlayer];
 }
 
 -(void)testGroup
@@ -145,7 +157,7 @@ static const int ddLogLevel = DDLogLevelError;
 //        self.playerView = [[SuperPlayerView alloc] init];
         SuperPlayerModel *playerModel = [[SuperPlayerModel alloc] init];
         // 设置播放地址，直播、点播都可以
-        playerModel.videoURL = @"http://1255652068.vod2.myqcloud.com/3ba8fdcavodcq1255652068/238349305285890806366936403/playlist_eof.m3u8";//@"http://videobj.renrenjiang.cn/record/alilive/8161873093.m3u8";
+        playerModel.videoURL = @"https://image.renrenjiang.cn/shiquyun/uploads/activity_leaders/b62aa7edbddb42aca2573ffa3814952a.mp3";
         // 开始播放
         [self.playerView playWithModel:playerModel];
         self.playerView.fatherView = cell.contentView;
@@ -166,7 +178,7 @@ static const int ddLogLevel = DDLogLevelError;
     self.playerView.fatherView = self.view;
     SuperPlayerModel *playerModel = [[SuperPlayerModel alloc] init];
     // 设置播放地址，直播、点播都可以
-    playerModel.videoURL =@"http://aliplay.renrenjiang.cn/alilive/6000982931.flv?auth_key=1630315823-0-0-02b99f5145bf54a80bcf941145a89f21";
+    playerModel.videoURL =@"http://videocdn.renrenjiang.cn/Act-ss-m3u8-sd/7876192_1641377363732/7876192_1641377363732.m3u8";
     // 开始播放
     [self.playerView playWithModel:playerModel];
 }
@@ -197,6 +209,9 @@ static const int ddLogLevel = DDLogLevelError;
 {
     if (_playerView == nil) {
         _playerView = [[SuperPlayerView alloc] init];
+        SuperPlayerViewConfig *config = [[SuperPlayerViewConfig alloc] init];
+        config.playRate = 2.0;
+        _playerView.playerConfig = config;
     }
     return _playerView;
 }
