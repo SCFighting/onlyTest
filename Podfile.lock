@@ -1,4 +1,19 @@
 PODS:
+  - AFNetworking (4.0.1):
+    - AFNetworking/NSURLSession (= 4.0.1)
+    - AFNetworking/Reachability (= 4.0.1)
+    - AFNetworking/Security (= 4.0.1)
+    - AFNetworking/Serialization (= 4.0.1)
+    - AFNetworking/UIKit (= 4.0.1)
+  - AFNetworking/NSURLSession (4.0.1):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/Reachability (4.0.1)
+  - AFNetworking/Security (4.0.1)
+  - AFNetworking/Serialization (4.0.1)
+  - AFNetworking/UIKit (4.0.1):
+    - AFNetworking/NSURLSession
   - CHTCollectionViewWaterfallLayout (0.9.10):
     - CHTCollectionViewWaterfallLayout/Swift (= 0.9.10)
   - CHTCollectionViewWaterfallLayout/Swift (0.9.10)
@@ -15,6 +30,7 @@ PODS:
   - libwebp/mux (1.2.3):
     - libwebp/demux
   - libwebp/webp (1.2.3)
+  - Masonry (1.1.0)
   - MBProgressHUD (1.2.0)
   - MJExtension (3.4.1)
   - MJRefresh (3.7.5)
@@ -24,6 +40,14 @@ PODS:
   - SDWebImageWebPCoder (0.9.1):
     - libwebp (~> 1.0)
     - SDWebImage/Core (~> 5.13)
+  - SuperPlayer/Professional (3.6.10):
+    - AFNetworking
+    - Masonry
+    - SDWebImage
+    - TXLiteAVSDK_Professional
+  - TXLiteAVSDK_Professional (10.7.11934):
+    - TXLiteAVSDK_Professional/Professional (= 10.7.11934)
+  - TXLiteAVSDK_Professional/Professional (10.7.11934)
   - TZImagePickerController (3.8.3):
     - TZImagePickerController/Basic (= 3.8.3)
     - TZImagePickerController/Location (= 3.8.3)
@@ -35,6 +59,7 @@ PODS:
     - YYImage/Core
 
 DEPENDENCIES:
+  - AFNetworking/NSURLSession
   - CHTCollectionViewWaterfallLayout
   - CocoaLumberjack
   - IQKeyboardManager
@@ -43,39 +68,48 @@ DEPENDENCIES:
   - MJRefresh
   - SDWebImage
   - SDWebImageWebPCoder
+  - SuperPlayer/Professional
   - TZImagePickerController
   - WebViewJavascriptBridge
   - YYImage/WebP
 
 SPEC REPOS:
   trunk:
+    - AFNetworking
     - CHTCollectionViewWaterfallLayout
     - CocoaLumberjack
     - IQKeyboardManager
     - libwebp
+    - Masonry
     - MBProgressHUD
     - MJExtension
     - MJRefresh
     - SDWebImage
     - SDWebImageWebPCoder
+    - SuperPlayer
+    - TXLiteAVSDK_Professional
     - TZImagePickerController
     - WebViewJavascriptBridge
     - YYImage
 
 SPEC CHECKSUMS:
+  AFNetworking: 7864c38297c79aaca1500c33288e429c3451fdce
   CHTCollectionViewWaterfallLayout: b989a459788d7657ac010e03bc0f7eedca95a420
   CocoaLumberjack: 543c79c114dadc3b1aba95641d8738b06b05b646
   IQKeyboardManager: 45a1fa55c1a5b02c61ac0fd7fd5b62bb4ad20d97
   libwebp: 60305b2e989864154bd9be3d772730f08fc6a59c
+  Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
   MBProgressHUD: 3ee5efcc380f6a79a7cc9b363dd669c5e1ae7406
   MJExtension: 21c5f6f8c4d5d8844b7ae8fbae08fed0b501f961
   MJRefresh: fdf5e979eb406a0341468932d1dfc8b7f9fce961
   SDWebImage: 72f86271a6f3139cc7e4a89220946489d4b9a866
   SDWebImageWebPCoder: 18503de6621dd2c420d680e33d46bf8e1d5169b0
+  SuperPlayer: dc5b20d7352411c465c450d277d9188374b0f0df
+  TXLiteAVSDK_Professional: fc20eb2d9e01d1afda17f47387cc2e0f0018c4ed
   TZImagePickerController: e9909edbadf7381140efc5b5c9f5bdbfd630f7d4
   WebViewJavascriptBridge: 7f5bc4d3581e672e8f32bd0f812d54bc69bb8e29
   YYImage: 1e1b62a9997399593e4b9c4ecfbbabbf1d3f3b54
 
-PODFILE CHECKSUM: 2ec9000d70a94ef5daa5faf425f76c793a153aad
+PODFILE CHECKSUM: e76006633d6ff5492c3bc96a91455b5f935c43d5
 
 COCOAPODS: 1.11.3

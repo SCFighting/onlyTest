@@ -15,7 +15,8 @@ target 'onlyTest' do
   pod 'MJRefresh'
   pod 'CHTCollectionViewWaterfallLayout'
   pod 'TZImagePickerController'
-  #pod 'SuperPlayer/Professional',:path => 'Pods/SuperPlayer'
+  pod 'AFNetworking/NSURLSession'
+  pod 'SuperPlayer/Professional'
   target 'onlyTestUITests' do
     # Pods for testing
   end
