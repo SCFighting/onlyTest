@@ -16,6 +16,7 @@ target 'onlyTest' do
   pod 'CHTCollectionViewWaterfallLayout'
   pod 'TZImagePickerController'
   pod 'AFNetworking/NSURLSession'
+  pod 'TXLiteAVSDK_Professional'
   pod 'SuperPlayer/Professional'
   target 'onlyTestUITests' do
     # Pods for testing

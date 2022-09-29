@@ -35,6 +35,7 @@ static const int ddLogLevel = DDLogLevelError;
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = UIColor.whiteColor;
+//    NSLog(@"%@",txli)
     [self testPlayer];
 }
 
