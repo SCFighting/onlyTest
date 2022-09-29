@@ -18,6 +18,7 @@
 #import "UIView+Fade.h"
 #import "UIView+MMLayout.h"
 // TODO: 处理头部引用
+#import <TXLiteAVSDK_Professional/TXLiteAVSDK.h>
 #import "TXAudioCustomProcessDelegate.h"
 #import "TXAudioRawDataDelegate.h"
 #import "TXBitrateItem.h"
@@ -2007,6 +2008,14 @@ TXLiveBaseDelegate,TXLivePlayListener,TXVodPlayListener>
             [self updateBitrates:player.supportedBitrates];
             [self detailPrepareState];
         }
+        //------------begin本地添加为了获取视频分辨率begin---------
+        if (EvtID == PLAY_EVT_RCV_FIRST_I_FRAME) {
+            self.videoResolution = CGSizeMake([self.vodPlayer width], [self.vodPlayer height]);
+            if ([self.delegate respondsToSelector:@selector(superPlayerDidStart:)]) {
+                [self.delegate superPlayerDidStart:self];
+            }
+        }
+        //------------end本地添加为了获取视频分辨率end---------
         if (EvtID == PLAY_EVT_PLAY_PROGRESS) {
             [self detailProgress];
             self.playCurrentTime = player.currentPlaybackTime;
@@ -2178,7 +2187,14 @@ TXLiveBaseDelegate,TXLivePlayListener,TXVodPlayListener>
                 [self.controlView setProgressTime:self.maxLiveProgressTime totalTime:-1 progressValue:1 playableValue:0];
             }
         }
-        
+        //------------begin本地添加为了获取视频分辨率begin---------
+        else if (EvtID == PLAY_EVT_RCV_FIRST_I_FRAME) {
+            self.videoResolution = CGSizeMake([[param objectForKey:@"EVT_WIDTH"] integerValue], [[param objectForKey:@"EVT_HEIGHT"] integerValue]);
+            if ([self.delegate respondsToSelector:@selector(superPlayerDidStart:)]) {
+                [self.delegate superPlayerDidStart:self];
+            }
+        }
+        //------------end本地添加为了获取视频分辨率end---------
         if ([self.playListener respondsToSelector:@selector(onLivePlayEvent:event:withParam:)]) {
             [self.playListener onLivePlayEvent:self.livePlayer event:EvtID withParam:dict];
         }
