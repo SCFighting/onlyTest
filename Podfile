@@ -18,6 +18,7 @@ target 'onlyTest' do
   pod 'AFNetworking/NSURLSession'
   pod 'TXLiteAVSDK_Professional'
   pod 'SuperPlayer/Professional'
+  pod 'TXIMSDK_Plus_iOS'
   target 'onlyTestUITests' do
     # Pods for testing
   end

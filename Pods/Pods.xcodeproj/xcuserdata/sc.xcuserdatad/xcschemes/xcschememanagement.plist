@@ -69,6 +69,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>TXIMSDK_Plus_iOS.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>TXLiteAVSDK_Professional.xcscheme</key>
 		<dict>
 			<key>isShown</key>

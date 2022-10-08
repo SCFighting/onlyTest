@@ -45,6 +45,7 @@ PODS:
     - Masonry
     - SDWebImage
     - TXLiteAVSDK_Professional
+  - TXIMSDK_Plus_iOS (6.7.3184)
   - TXLiteAVSDK_Professional (10.7.11934):
     - TXLiteAVSDK_Professional/Professional (= 10.7.11934)
   - TXLiteAVSDK_Professional/Professional (10.7.11934)
@@ -69,6 +70,7 @@ DEPENDENCIES:
   - SDWebImage
   - SDWebImageWebPCoder
   - SuperPlayer/Professional
+  - TXIMSDK_Plus_iOS
   - TXLiteAVSDK_Professional
   - TZImagePickerController
   - WebViewJavascriptBridge
@@ -88,6 +90,7 @@ SPEC REPOS:
     - SDWebImage
     - SDWebImageWebPCoder
     - SuperPlayer
+    - TXIMSDK_Plus_iOS
     - TXLiteAVSDK_Professional
     - TZImagePickerController
     - WebViewJavascriptBridge
@@ -106,11 +109,12 @@ SPEC CHECKSUMS:
   SDWebImage: 72f86271a6f3139cc7e4a89220946489d4b9a866
   SDWebImageWebPCoder: 18503de6621dd2c420d680e33d46bf8e1d5169b0
   SuperPlayer: dc5b20d7352411c465c450d277d9188374b0f0df
+  TXIMSDK_Plus_iOS: 5412f55a77f058b2b5a8575900334daccbae3b08
   TXLiteAVSDK_Professional: fc20eb2d9e01d1afda17f47387cc2e0f0018c4ed
   TZImagePickerController: e9909edbadf7381140efc5b5c9f5bdbfd630f7d4
   WebViewJavascriptBridge: 7f5bc4d3581e672e8f32bd0f812d54bc69bb8e29
   YYImage: 1e1b62a9997399593e4b9c4ecfbbabbf1d3f3b54
 
-PODFILE CHECKSUM: 8ff2aa6de2bd54c0864c8da13a303b97c984caf1
+PODFILE CHECKSUM: 1287b7acabe0db7db372e0b01f0d703a3ec23eb1
 
 COCOAPODS: 1.11.3

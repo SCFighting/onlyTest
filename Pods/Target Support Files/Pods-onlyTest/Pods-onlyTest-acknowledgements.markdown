@@ -227,6 +227,11 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 
 
+## TXIMSDK_Plus_iOS
+
+copyright 2017 tencent Ltd. All rights reserved.
+
+
 ## TXLiteAVSDK_Professional
 
 copyright 2017 tencent Ltd. All rights reserved.
