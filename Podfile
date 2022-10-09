@@ -19,6 +19,8 @@ target 'onlyTest' do
   pod 'TXLiteAVSDK_Professional'
   pod 'SuperPlayer/Professional'
   pod 'TXIMSDK_Plus_iOS'
+  pod 'BlocksKit'
+  pod 'KVOController'
   target 'onlyTestUITests' do
     # Pods for testing
   end
