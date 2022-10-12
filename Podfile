@@ -17,7 +17,7 @@ target 'onlyTest' do
   pod 'TZImagePickerController'
   pod 'AFNetworking/NSURLSession'
   pod 'TXLiteAVSDK_Professional'
-  pod 'SuperPlayer/Professional','~>3.6.10'
+  pod 'SuperPlayer/Professional','=3.6.10'
   pod 'TXIMSDK_Plus_iOS'
   pod 'BlocksKit'
   pod 'KVOController'
