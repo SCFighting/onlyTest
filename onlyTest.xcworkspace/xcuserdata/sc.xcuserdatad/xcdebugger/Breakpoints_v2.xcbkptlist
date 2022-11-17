@@ -7,16 +7,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "AD161EC2-5C20-4B4A-8295-20D489DFBDB1"
+            uuid = "06D90816-8A8B-465E-ABC6-CCA7FD2E3DE8"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Pods/SuperPlayer/Demo/TXLiteAVDemo/SuperPlayerKit/SuperPlayer/SuperPlayerView.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "2225"
-            endingLineNumber = "2225"
-            landmarkName = "-livePlayerType"
+            startingLineNumber = "1845"
+            endingLineNumber = "1845"
+            landmarkName = "-sliderPosToTime:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
