@@ -18,7 +18,6 @@
 #import "UIView+Fade.h"
 #import "UIView+MMLayout.h"
 // TODO: 处理头部引用
-#import <TXLiteAVSDK_Professional/TXLiteAVSDK.h>
 #import "TXAudioCustomProcessDelegate.h"
 #import "TXAudioRawDataDelegate.h"
 #import "TXBitrateItem.h"
@@ -1542,7 +1541,7 @@ TXLiveBaseDelegate,TXLivePlayListener,TXVodPlayListener>
 - (void)setState:(SuperPlayerState)state {
     _state = state;
     // 控制菊花显示、隐藏
-    if (state == StateBuffering) {
+    if (state == StateBuffering && !_playDidEnd) {
         [self.spinner startAnimating];
     } else {
         [self.spinner stopAnimating];
@@ -2222,16 +2221,8 @@ TXLiveBaseDelegate,TXLivePlayListener,TXVodPlayListener>
     NSString *       videoURL   = self.playerModel.playingDefinitionUrl;
     NSURLComponents *components = [NSURLComponents componentsWithString:videoURL];
     NSString *       scheme     = [[components scheme] lowercaseString];
-    if ([scheme isEqualToString:@"rtmp"])
-    {
-        if(self.playerModel.ACC)
-        {
-            playType = PLAY_TYPE_LIVE_RTMP_ACC;
-        }
-        else
-        {
-            playType = PLAY_TYPE_LIVE_RTMP;
-        }
+    if ([scheme isEqualToString:@"rtmp"]) {
+        playType = PLAY_TYPE_LIVE_RTMP;
     } else if ([scheme hasPrefix:@"http"] && [[components path].lowercaseString hasSuffix:@".flv"]) {
         playType = PLAY_TYPE_LIVE_FLV;
     }
@@ -2281,15 +2272,22 @@ TXLiveBaseDelegate,TXLivePlayListener,TXVodPlayListener>
                 self->_restoreUI = NO;
             });
         } else {
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [self pause];
-                [player stopPlay];
-                [player removeVideoWidget];
-                [self.vodPlayer stopPlay];
-                [self.vodPlayer removeVideoWidget];
-                self.vodPlayer = nil;
-                self.state = StateStopped;
-            });
+            if (!self.didEnterBackground) {
+                if (_playDidEnd || isShowVipWatchView) {
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        [self pause];
+                        [player stopPlay];
+                        [player removeVideoWidget];
+                        [self.vodPlayer stopPlay];
+                        [self.vodPlayer removeVideoWidget];
+                        self.vodPlayer = nil;
+                        self.state = StateStopped;
+                        [self.spinner stopAnimating];
+                    });
+                } else {
+                    [player exitPictureInPicture];
+                }
+            }
         }
     }
 }

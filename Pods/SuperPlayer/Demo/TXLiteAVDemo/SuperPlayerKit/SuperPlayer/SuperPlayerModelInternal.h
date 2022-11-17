@@ -10,7 +10,6 @@
 #import "SPVideoFrameDescription.h"
 #import "SuperPlayerModel.h"
 #import <TXLiteAVSDK_Professional/TXLiteAVSDK.h>
-#import "TXBitrateItem.h"
 #import <AFNetworking/AFNetworking.h>
 
 @class TXImageSprite;
