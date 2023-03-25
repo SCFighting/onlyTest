@@ -35,36 +35,36 @@ PODS:
   - CocoaLumberjack (3.7.4):
     - CocoaLumberjack/Core (= 3.7.4)
   - CocoaLumberjack/Core (3.7.4)
-  - IQKeyboardManager (6.5.10)
+  - IQKeyboardManager (6.5.11)
   - KVOController (1.2.0)
-  - libwebp (1.2.3):
-    - libwebp/demux (= 1.2.3)
-    - libwebp/mux (= 1.2.3)
-    - libwebp/webp (= 1.2.3)
-  - libwebp/demux (1.2.3):
+  - libwebp (1.2.4):
+    - libwebp/demux (= 1.2.4)
+    - libwebp/mux (= 1.2.4)
+    - libwebp/webp (= 1.2.4)
+  - libwebp/demux (1.2.4):
     - libwebp/webp
-  - libwebp/mux (1.2.3):
+  - libwebp/mux (1.2.4):
     - libwebp/demux
-  - libwebp/webp (1.2.3)
+  - libwebp/webp (1.2.4)
   - Masonry (1.1.0)
   - MBProgressHUD (1.2.0)
   - MJExtension (3.4.1)
   - MJRefresh (3.7.5)
-  - SDWebImage (5.13.4):
-    - SDWebImage/Core (= 5.13.4)
-  - SDWebImage/Core (5.13.4)
-  - SDWebImageWebPCoder (0.9.1):
+  - SDWebImage (5.15.5):
+    - SDWebImage/Core (= 5.15.5)
+  - SDWebImage/Core (5.15.5)
+  - SDWebImageWebPCoder (0.11.0):
     - libwebp (~> 1.0)
-    - SDWebImage/Core (~> 5.13)
-  - SuperPlayer/Professional (3.6.12):
+    - SDWebImage/Core (~> 5.15)
+  - SuperPlayer/Professional (3.7.1):
     - AFNetworking
     - Masonry
     - SDWebImage
     - TXLiteAVSDK_Professional
-  - TXIMSDK_Plus_iOS (6.7.3184)
-  - TXLiteAVSDK_Professional (10.7.11936):
-    - TXLiteAVSDK_Professional/Professional (= 10.7.11936)
-  - TXLiteAVSDK_Professional/Professional (10.7.11936)
+  - TXIMSDK_Plus_iOS (7.1.3925)
+  - TXLiteAVSDK_Professional (11.0.14032):
+    - TXLiteAVSDK_Professional/Professional (= 11.0.14032)
+  - TXLiteAVSDK_Professional/Professional (11.0.14032)
   - TZImagePickerController (3.8.3):
     - TZImagePickerController/Basic (= 3.8.3)
     - TZImagePickerController/Location (= 3.8.3)
@@ -76,7 +76,7 @@ PODS:
     - YYImage/Core
 
 DEPENDENCIES:
-  - AFNetworking/NSURLSession
+  - AFNetworking (~> 4.0.1)
   - BlocksKit
   - CHTCollectionViewWaterfallLayout
   - CocoaLumberjack
@@ -87,7 +87,7 @@ DEPENDENCIES:
   - MJRefresh
   - SDWebImage
   - SDWebImageWebPCoder
-  - SuperPlayer/Professional (= 3.6.12)
+  - SuperPlayer/Professional
   - TXIMSDK_Plus_iOS
   - TXLiteAVSDK_Professional
   - TZImagePickerController
@@ -117,26 +117,26 @@ SPEC REPOS:
     - YYImage
 
 SPEC CHECKSUMS:
-  AFNetworking: 7864c38297c79aaca1500c33288e429c3451fdce
+  AFNetworking: 3bd23d814e976cd148d7d44c3ab78017b744cd58
   BlocksKit: 8639b2848dd51c35c957af4d9fbdc7a769a1fc12
   CHTCollectionViewWaterfallLayout: b989a459788d7657ac010e03bc0f7eedca95a420
   CocoaLumberjack: 543c79c114dadc3b1aba95641d8738b06b05b646
-  IQKeyboardManager: 45a1fa55c1a5b02c61ac0fd7fd5b62bb4ad20d97
+  IQKeyboardManager: ef43ce1ba1e5aaf4adf222c0a46f39761f246879
   KVOController: d72ace34afea42468329623b3379ab3cd1d286b6
-  libwebp: 60305b2e989864154bd9be3d772730f08fc6a59c
+  libwebp: f62cb61d0a484ba548448a4bd52aabf150ff6eef
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
   MBProgressHUD: 3ee5efcc380f6a79a7cc9b363dd669c5e1ae7406
   MJExtension: 21c5f6f8c4d5d8844b7ae8fbae08fed0b501f961
   MJRefresh: fdf5e979eb406a0341468932d1dfc8b7f9fce961
-  SDWebImage: e5cc87bf736e60f49592f307bdf9e157189298a3
-  SDWebImageWebPCoder: 18503de6621dd2c420d680e33d46bf8e1d5169b0
-  SuperPlayer: 3db1ba989dacf7d7c63acd45e034fbfd1af3dbba
-  TXIMSDK_Plus_iOS: 5412f55a77f058b2b5a8575900334daccbae3b08
-  TXLiteAVSDK_Professional: 53e6802e4bab87bd8815aa46e81d93803fffe612
+  SDWebImage: fd7e1a22f00303e058058278639bf6196ee431fe
+  SDWebImageWebPCoder: 295a6573c512f54ad2dd58098e64e17dcf008499
+  SuperPlayer: 03871642e2aff9157ae7a7d4e037fca53334dcc2
+  TXIMSDK_Plus_iOS: 3edf95acc3dff794287ea858b5205ed6f4dd339f
+  TXLiteAVSDK_Professional: 40a4dbd4c3799daf357e22033fc4cef46de43d22
   TZImagePickerController: e9909edbadf7381140efc5b5c9f5bdbfd630f7d4
   WebViewJavascriptBridge: 7f5bc4d3581e672e8f32bd0f812d54bc69bb8e29
   YYImage: 1e1b62a9997399593e4b9c4ecfbbabbf1d3f3b54
 
-PODFILE CHECKSUM: 0bb37ac043501a4b54e3f575b911ea0d48d473f4
+PODFILE CHECKSUM: a41156360590417ef711502e604a2d1607fd6a70
 
 COCOAPODS: 1.11.3

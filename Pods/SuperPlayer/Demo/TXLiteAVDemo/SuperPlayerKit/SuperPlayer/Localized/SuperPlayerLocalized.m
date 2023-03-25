@@ -8,8 +8,26 @@
 #import "SuperPlayerLocalized.h"
 
 NSString *superPlayerLocalizeFromTable(NSString *key, NSString *table) {
-    NSString *resourcePath = [[NSBundle mainBundle] pathForResource:@"SuperPlayerKitBundle" ofType:@"bundle"];
-    NSBundle *bundle = [NSBundle bundleWithPath:resourcePath];
+    NSArray *languages = [[NSUserDefaults standardUserDefaults] objectForKey:@"AppleLanguages"];
+    if ([languages count] <= 0) {  // 语言包判断
+        languages = [NSArray arrayWithObject:@"en"];
+    }
+    
+    NSString *preferredLang = [languages objectAtIndex:0]; // zh-Hant-GB
+    NSString *languageProj = [preferredLang stringByReplacingOccurrencesOfString:@"-GB" withString:@""];
+    languageProj = [languageProj stringByReplacingOccurrencesOfString:@"-CN" withString:@""];
+    NSString *resourceDict = [[NSBundle mainBundle] pathForResource:@"SuperPlayerKitBundle" ofType:@"bundle"];
+    if (resourceDict.length == 0) { // 资源Bundle文件目录
+        return key;
+    }
+    
+    NSString *bundleOfPath = [NSBundle pathForResource:languageProj ofType:@"lproj" inDirectory:resourceDict];
+    NSBundle *bundle = [NSBundle bundleWithPath:bundleOfPath];
+    if (!bundle) { // 语言lproj的判断
+        bundleOfPath = [NSBundle pathForResource:@"en" ofType:@"lproj" inDirectory:resourceDict];
+        bundle = [NSBundle bundleWithPath:bundleOfPath];
+    }
+    
     return [bundle localizedStringForKey:key value:@"" table:table];
 }
 

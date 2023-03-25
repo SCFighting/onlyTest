@@ -13,9 +13,15 @@
 #import "SuperPlayerControlViewDelegate.h"
 #import "SuperPlayerFastView.h"
 #import "SuperPlayerSettingsView.h"
+#import "SuperPlayerTrackView.h"
+#import "SuperPlayerSubtitlesView.h"
 #import "SuperPlayerViewConfig.h"
 
-@interface                        SuperPlayerControlView : UIView
+@interface SuperPlayerControlView : UIView
+
+/**
+ * 竖向/横向约束标志位
+ */
 @property(assign, nonatomic) BOOL compact;
 /**
  * 点播放试看时间范围 0.0 - 1.0
@@ -23,6 +29,34 @@
  * 用于试看场景，防止进度条拖动超过试看时长
  */
 @property(assign, nonatomic) float maxPlayableRatio;
+/**
+ * 标题
+ */
+@property (nonatomic, copy) NSString *title;
+/**
+ * 打点信息
+ */
+@property (nonatomic, strong) NSArray<SPVideoFrameDescription *> *pointArray;
+/**
+ * 是否在拖动进度
+ */
+@property (nonatomic, assign) BOOL isDragging;
+/**
+ * 是否显示二级菜单
+ */
+@property (nonatomic, assign) BOOL isShowSecondView;
+/**
+ * 是否允许控件响应点击的 FadeShow/ FadeOut事件，默认为YES
+ */
+@property (nonatomic, assign) BOOL enableFadeAction;
+/**
+ * 回调delegate
+ */
+@property (nonatomic, weak) id<SuperPlayerControlViewDelegate> delegate;
+/**
+ *  播放配置
+ */
+@property (nonatomic, strong) SuperPlayerViewConfig *playerConfig;
 /**
  * 播放进度
  * @param currentTime 当前播放时长
@@ -75,6 +109,18 @@
 - (void)setDisableOfflineBtn:(BOOL)disableOfflineBtn;
 
 /**
+ * 是否隐藏音轨控件
+ * @param isShow  YES显示，NO隐藏
+ */
+- (void)setTrackBtnState:(BOOL)isShow;
+
+/**
+ * 是否隐藏字幕控件
+ * @param isShow  YES显示，NO隐藏
+ */
+- (void)setSubtitlesBtnState:(BOOL)isShow;
+
+/**
  * 重置播放控制面板
  * @param resolutionNames 清晰度名称
  * @param resolutionIndex 正在播放的清晰度的下标
@@ -88,20 +134,26 @@
                   isTimeShifting:(BOOL)isTimeShifting
                        isPlaying:(BOOL)isPlaying;
 
-/// 标题
-@property NSString *title;
-/// 打点信息
-@property NSArray<SPVideoFrameDescription *> *pointArray;
-/// 是否在拖动进度
-@property BOOL isDragging;
-/// 是否显示二级菜单
-@property BOOL isShowSecondView;
-/// 回调delegate
-@property(nonatomic, weak) id<SuperPlayerControlViewDelegate> delegate;
-/// 播放配置
-@property SuperPlayerViewConfig *playerConfig;
+/**
+ * 重置字幕音轨面板
+ * @param tracks 音轨数组
+ * @param trackIndex 正在播放的音轨下标
+ * @param subtitles 字幕数组
+ * @param subtitleIndex 正在播放的字幕下标
+ */
+- (void)resetWithTracks:(NSMutableArray *)tracks
+      currentTrackIndex:(NSInteger)trackIndex
+              subtitles:(NSMutableArray *)subtitles
+  currentSubtitlesIndex:(NSInteger)subtitleIndex;
 
+/**
+ *  设置竖直方向的约束
+ */
 - (void)setOrientationPortraitConstraint;
+
+/**
+ *  设置横屏方向的约束
+ */
 - (void)setOrientationLandscapeConstraint;
 
 @end
