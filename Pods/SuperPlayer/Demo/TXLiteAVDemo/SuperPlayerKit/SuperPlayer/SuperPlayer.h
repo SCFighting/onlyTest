@@ -6,3 +6,4 @@
 #import "SPDefaultControlView.h"
 #import "SPWeiboControlView.h"
 #import "SuperPlayerHelpers.h"
+#import <TXLiteAVSDK_Professional/TXLiteAVSDK.h>

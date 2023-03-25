@@ -6,7 +6,7 @@
 //  Copyright © 2022 Tencent. All rights reserved.
 
 #import <UIKit/UIKit.h>
-#import "TXTrackInfo.h"
+#import <TXLiteAVSDK_Professional/TXTrackInfo.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
