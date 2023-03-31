@@ -1392,9 +1392,9 @@ TXLiveBaseDelegate,TXLivePlayListener,TXVodPlayListener>
         if (!self.isLoaded) {
             return NO;
         }
-        if (self.isLockScreen) {
-            return NO;
-        }
+//        if (self.isLockScreen) {
+//            return NO;
+//        }
         if (SuperPlayerWindowShared.isShowing) {
             return NO;
         }
@@ -1798,6 +1798,7 @@ TXLiveBaseDelegate,TXLivePlayListener,TXVodPlayListener>
     }
     
     if (isFullScreen) {
+        NSLog(@"呀呀呀呀呀呀呀呀呀呀呀呀呀呀呀呀呀呀呀呀呀呀呀呀呀呀呀呀呀呀呀");
         [[UIApplication sharedApplication] setStatusBarHidden:isFullScreen];
         [self.controlView setTopViewState:YES];
         [self showOrHideBackBtn:YES];
