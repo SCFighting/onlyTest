@@ -754,12 +754,12 @@ TXLiveBaseDelegate,TXLivePlayListener,TXVodPlayListener>
 }
 
 - (void)setCoverImage {
-    self.coverImageView.hidden = NO;
-    NSURL *customUrl = [NSURL URLWithString:_playerModel.customCoverImageUrl];
-    NSURL *defaultUrl = [NSURL URLWithString:_playerModel.defaultCoverImageUrl];
-    [self.coverImageView sd_setImageWithURL:_playerModel.customCoverImageUrl.length > 0 ? customUrl : defaultUrl
-                           placeholderImage:SuperPlayerImage(@"defaultCoverImage")
-                                    options:SDWebImageAvoidDecodeImage];
+//    self.coverImageView.hidden = NO;
+//    NSURL *customUrl = [NSURL URLWithString:_playerModel.customCoverImageUrl];
+//    NSURL *defaultUrl = [NSURL URLWithString:_playerModel.defaultCoverImageUrl];
+//    [self.coverImageView sd_setImageWithURL:_playerModel.customCoverImageUrl.length > 0 ? customUrl : defaultUrl
+//                           placeholderImage:SuperPlayerImage(@"defaultCoverImage")
+//                                    options:SDWebImageAvoidDecodeImage];
 }
 
 - (void)restart {
@@ -1406,7 +1406,7 @@ TXLiveBaseDelegate,TXLivePlayListener,TXVodPlayListener>
             CGPoint veloctyPoint = [pan velocityInView:self];
             CGFloat pointX = fabs(veloctyPoint.x);
             CGFloat pointY = fabs(veloctyPoint.y);
-            if (pointX > pointY) {
+            if (pointX > pointY&&!_isLive) {
                 return YES;
             } else {
                 return self.disableGesture ? YES : NO;
@@ -2603,7 +2603,7 @@ TXLiveBaseDelegate,TXLivePlayListener,TXVodPlayListener>
         _coverImageView                        = [[UIImageView alloc] init];
         _coverImageView.userInteractionEnabled = YES;
         _coverImageView.clipsToBounds = YES;
-        _coverImageView.image = SuperPlayerImage(@"defaultCoverImage");
+//        _coverImageView.image = SuperPlayerImage(@"defaultCoverImage");
         _coverImageView.contentMode            = UIViewContentModeScaleAspectFill;
         [self insertSubview:_coverImageView belowSubview:self.controlView];
         [_coverImageView mas_makeConstraints:^(MASConstraintMaker *make) {
