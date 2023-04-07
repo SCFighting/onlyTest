@@ -6,6 +6,7 @@ HEADER_SEARCH_PATHS = $(inherited) ${PODS_ROOT}/TXLiteAVSDK_Professional/TXLiteA
 OTHER_LDFLAGS = $(inherited) -l"c++" -l"resolv" -l"sqlite3" -l"z" -framework "AVFoundation" -framework "Accelerate" -framework "AssetsLibrary" -framework "AudioToolbox" -framework "CoreServices" -framework "GLKit" -framework "MetalKit" -framework "ReplayKit" -framework "SystemConfiguration" -framework "VideoToolbox"
 PODS_BUILD_DIR = ${BUILD_DIR}
 PODS_CONFIGURATION_BUILD_DIR = ${PODS_BUILD_DIR}/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)
+PODS_DEVELOPMENT_LANGUAGE = ${DEVELOPMENT_LANGUAGE}
 PODS_ROOT = ${SRCROOT}
 PODS_TARGET_SRCROOT = ${PODS_ROOT}/TXLiteAVSDK_Professional
 PODS_XCFRAMEWORKS_BUILD_DIR = $(PODS_CONFIGURATION_BUILD_DIR)/XCFrameworkIntermediates
