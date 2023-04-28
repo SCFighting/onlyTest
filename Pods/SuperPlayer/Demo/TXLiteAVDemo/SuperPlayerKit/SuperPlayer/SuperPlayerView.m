@@ -1279,6 +1279,11 @@ TXLiveBaseDelegate,TXLivePlayListener,TXVodPlayListener>
         return;
     }
     
+    if (_vodPlayInBackground)
+    {
+        return;
+    }
+    
     if (!self.isPauseByUser && (self.state != StateStopped && self.state != StateFailed)) {
         [_vodPlayer pause];
         self.state = StatePause;
@@ -1297,6 +1302,11 @@ TXLiveBaseDelegate,TXLivePlayListener,TXVodPlayListener>
     }
     
     if (_hasStartPip) {
+        return;
+    }
+    
+    if (_vodPlayInBackground)
+    {
         return;
     }
     

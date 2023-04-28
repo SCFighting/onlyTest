@@ -134,6 +134,8 @@ typedef NS_ENUM(NSInteger, SuperPlayerLayoutStyle) {
 @property(nonatomic, strong) SuperPlayerViewConfig *playerConfig;
 /// 循环播放
 @property(nonatomic, assign) BOOL loop;
+/// 录播后台播放
+@property(nonatomic, assign) BOOL vodPlayInBackground;
 /**
  * 视频雪碧图
  */
