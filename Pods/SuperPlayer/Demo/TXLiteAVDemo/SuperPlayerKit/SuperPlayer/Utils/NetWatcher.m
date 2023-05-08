@@ -7,14 +7,12 @@
 //
 
 #import "NetWatcher.h"
-#import "SuperPlayerReachability.h"
+
+#import "AFNetworking/AFNetworking.h"
 #import "SuperPlayerModelInternal.h"
 
 @interface NetWatcher ()
-
-@property (nonatomic, strong) NSArray *definitions;
-
-@property (nonatomic, strong) SuperPlayerReachability *reachAbility;
+@property NSArray *definitions;
 @end
 
 @implementation NetWatcher {
@@ -30,9 +28,8 @@
     self.definitions = [self.playerModel.playDefinitions sortedArrayUsingComparator:^NSComparisonResult(NSString *obj1, NSString *obj2) {
         return [NetWatcher weightOfDefinition:obj1] < [NetWatcher weightOfDefinition:obj2];
     }];
-    
-    
-    if ([self.reachAbility currentReachabilityStatus] == ReachableViaWWAN) {
+
+    if (AFNetworkReachabilityManager.sharedManager.networkReachabilityStatus == AFNetworkReachabilityStatusReachableViaWWAN) {
         self.adviseDefinition = self.definitions.lastObject;
     } else {
         self.adviseDefinition = self.definitions.firstObject;
@@ -42,14 +39,7 @@
 - (void)startWatch {
     [self stopWatch];
 
-    // 监听网络状态改变的通知
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(networkChanged:)
-                                                 name:kTXSuperPlayerReachabilityChangedNotification
-                                               object:nil];
-
-    // 开始监控网络(一旦网络状态发生改变, 就会发出通知kTXSuperPlayerReachabilityChangedNotification)
-    [_reachAbility startNotifier];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(networkChanged:) name:AFNetworkingReachabilityDidChangeNotification object:nil];
 
     if (self.definitions.count <= 1) {
         return;
@@ -130,7 +120,7 @@
 }
 
 - (void)networkChanged:(NSNotification *)noti {
-    if ([_reachAbility currentReachabilityStatus] == ReachableViaWWAN) {
+    if (AFNetworkReachabilityManager.sharedManager.networkReachabilityStatus == AFNetworkReachabilityStatusReachableViaWWAN) {
         self.adviseDefinition = self.definitions.lastObject;
         if (self.adviseDefinition && ![self.playerModel.playingDefinition isEqualToString:self.adviseDefinition]) {
             self.notifyTipsBlock([@"当前网络为4G，建议切换到" stringByAppendingString:self.adviseDefinition]);
@@ -145,36 +135,25 @@
     if ([def isEqualToString:@"标清"]) {
         return 15;
     }
-    if ([def isEqualToString:@"全标清"]) {
+    if ([def isEqualToString:@"高清"]) {
         return 20;
     }
-    if ([def isEqualToString:@"高清"]) {
+    if ([def isEqualToString:@"全高清"]) {
         return 40;
     }
     if ([def isEqualToString:@"超清"]) {
         return 50;
     }
-    if ([def isEqualToString:@"2K"]) {
+    if ([def isEqualToString:@"原画"]) {
         return 60;
     }
-    if ([def isEqualToString:@"4K"]) {
+    if ([def isEqualToString:@"2K"]) {
         return 70;
     }
+    if ([def isEqualToString:@"4K"]) {
+        return 80;
+    }
     return 10000;
-}
-
-- (SuperPlayerReachability *)reachAbility {
-    if (!_reachAbility) {
-        // 创建Reachability
-        _reachAbility = [SuperPlayerReachability reachabilityForInternetConnection];
-    }
-    return _reachAbility;
-}
-
-- (void)dealloc {
-    if (self.reachAbility) {
-        [self.reachAbility stopNotifier];
-    }
 }
 
 @end

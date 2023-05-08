@@ -1,9 +1,9 @@
 CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = NO
 CONFIGURATION_BUILD_DIR = ${PODS_CONFIGURATION_BUILD_DIR}/TXLiteAVSDK_Professional
-FRAMEWORK_SEARCH_PATHS = $(inherited) "${PODS_ROOT}/TXLiteAVSDK_Professional/TXLiteAVSDK_Professional" "${PODS_XCFRAMEWORKS_BUILD_DIR}/TXLiteAVSDK_Professional/Professional"
+FRAMEWORK_SEARCH_PATHS = $(inherited) "${PODS_ROOT}/TXLiteAVSDK_Professional/TXLiteAVSDK_Professional"
 GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
 HEADER_SEARCH_PATHS = $(inherited) ${PODS_ROOT}/TXLiteAVSDK_Professional/TXLiteAVSDK_Professional/TXLiteAVSDK_Professional.framework/Headers/
-OTHER_LDFLAGS = $(inherited) -l"c++" -l"resolv" -l"sqlite3" -l"z" -framework "AVFoundation" -framework "Accelerate" -framework "AssetsLibrary" -framework "AudioToolbox" -framework "CoreServices" -framework "GLKit" -framework "MetalKit" -framework "ReplayKit" -framework "SystemConfiguration" -framework "VideoToolbox"
+OTHER_LDFLAGS = $(inherited) -l"c++" -l"iconv" -l"resolv" -l"sqlite3" -l"z" -framework "AVFoundation" -framework "Accelerate" -framework "CoreGraphics" -framework "CoreTelephony" -framework "OpenAL" -framework "SystemConfiguration" -framework "VideoToolbox"
 PODS_BUILD_DIR = ${BUILD_DIR}
 PODS_CONFIGURATION_BUILD_DIR = ${PODS_BUILD_DIR}/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)
 PODS_DEVELOPMENT_LANGUAGE = ${DEVELOPMENT_LANGUAGE}

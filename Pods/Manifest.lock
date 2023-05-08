@@ -50,21 +50,19 @@ PODS:
   - MBProgressHUD (1.2.0)
   - MJExtension (3.4.1)
   - MJRefresh (3.7.5)
-  - SDWebImage (5.15.5):
-    - SDWebImage/Core (= 5.15.5)
-  - SDWebImage/Core (5.15.5)
+  - SDWebImage (5.15.7):
+    - SDWebImage/Core (= 5.15.7)
+  - SDWebImage/Core (5.15.7)
   - SDWebImageWebPCoder (0.11.0):
     - libwebp (~> 1.0)
     - SDWebImage/Core (~> 5.15)
-  - SuperPlayer/Professional (3.7.1):
+  - SuperPlayer/Professional (3.5.2):
     - AFNetworking
     - Masonry
     - SDWebImage
     - TXLiteAVSDK_Professional
-  - TXIMSDK_Plus_iOS (7.1.3925)
-  - TXLiteAVSDK_Professional (11.0.14032):
-    - TXLiteAVSDK_Professional/Professional (= 11.0.14032)
-  - TXLiteAVSDK_Professional/Professional (11.0.14032)
+  - TXIMSDK_Plus_iOS (7.2.4123)
+  - TXLiteAVSDK_Professional (9.5.11504)
   - TZImagePickerController (3.8.3):
     - TZImagePickerController/Basic (= 3.8.3)
     - TZImagePickerController/Location (= 3.8.3)
@@ -87,9 +85,9 @@ DEPENDENCIES:
   - MJRefresh
   - SDWebImage
   - SDWebImageWebPCoder
-  - SuperPlayer/Professional
+  - SuperPlayer/Professional (< 3.6)
   - TXIMSDK_Plus_iOS
-  - TXLiteAVSDK_Professional
+  - TXLiteAVSDK_Professional (< 10.0)
   - TZImagePickerController
   - WebViewJavascriptBridge
   - YYImage/WebP
@@ -128,15 +126,15 @@ SPEC CHECKSUMS:
   MBProgressHUD: 3ee5efcc380f6a79a7cc9b363dd669c5e1ae7406
   MJExtension: 21c5f6f8c4d5d8844b7ae8fbae08fed0b501f961
   MJRefresh: fdf5e979eb406a0341468932d1dfc8b7f9fce961
-  SDWebImage: fd7e1a22f00303e058058278639bf6196ee431fe
+  SDWebImage: 25bac438318faf37e35650619ebc288a9061d292
   SDWebImageWebPCoder: 295a6573c512f54ad2dd58098e64e17dcf008499
-  SuperPlayer: 03871642e2aff9157ae7a7d4e037fca53334dcc2
-  TXIMSDK_Plus_iOS: 3edf95acc3dff794287ea858b5205ed6f4dd339f
-  TXLiteAVSDK_Professional: 40a4dbd4c3799daf357e22033fc4cef46de43d22
+  SuperPlayer: 75b01a48adf2617af683165eaa61460cd973fe61
+  TXIMSDK_Plus_iOS: cd3078784ca9a7101a2b80cab9ba6ebff662943f
+  TXLiteAVSDK_Professional: 4d637524b92357c4e88357eb35d0d045d1b22970
   TZImagePickerController: e9909edbadf7381140efc5b5c9f5bdbfd630f7d4
   WebViewJavascriptBridge: 7f5bc4d3581e672e8f32bd0f812d54bc69bb8e29
   YYImage: 1e1b62a9997399593e4b9c4ecfbbabbf1d3f3b54
 
-PODFILE CHECKSUM: 1bad906adba40e2fd0643ca7375e2b2a9a322a50
+PODFILE CHECKSUM: b0c2b032ca839e55d388b61937ec1d1a4dc70485
 
-COCOAPODS: 1.12.0
+COCOAPODS: 1.12.1

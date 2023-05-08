@@ -12,11 +12,12 @@
 
 @implementation SPVideoFrameDescription
 + (instancetype)instanceFromDictionary:(NSDictionary *)keyFrameDesc {
-    SPVideoFrameDescription *ret = [[SPVideoFrameDescription alloc] init];
-    if ([keyFrameDesc isKindOfClass:[NSDictionary class]]) {
-        ret.time                     = [J2Num([keyFrameDesc valueForKeyPath:@"timeOffset"]) intValue] / 1000.0;
-        ret.text                     = [J2Str([keyFrameDesc valueForKey:@"content"]) stringByRemovingPercentEncoding];
+    if (![keyFrameDesc isKindOfClass:[NSDictionary class]]) {
+        return nil;
     }
+    SPVideoFrameDescription *ret = [[SPVideoFrameDescription alloc] init];
+    ret.time                     = [J2Num([keyFrameDesc valueForKeyPath:@"timeOffset"]) intValue] / 1000.0;
+    ret.text                     = [J2Str([keyFrameDesc valueForKeyPath:@"content"]) stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     return ret;
 }
 @end
