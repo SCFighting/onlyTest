@@ -142,6 +142,8 @@ typedef NS_ENUM(NSInteger, SuperPlayerLayoutStyle) {
  *videoResolution 视频分辨率，开始播放后获取到
  */
 @property(nonatomic,assign)CGSize videoResolution;
+/// 录播后台播放
+@property(nonatomic, assign) BOOL vodPlayInBackground;
 /**
  * 播放model
  */

@@ -1127,6 +1127,10 @@ static UISlider *_volumeSlider;
     if (self.isLive) {
         return;
     }
+    if (self.vodPlayInBackground)
+    {
+        return;
+    }
     if (!self.isPauseByUser && (self.state != StateStopped && self.state != StateFailed)) {
         [_vodPlayer pause];
         self.state = StatePause;
