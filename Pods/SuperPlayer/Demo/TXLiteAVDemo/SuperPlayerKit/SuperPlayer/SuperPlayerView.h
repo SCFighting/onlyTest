@@ -139,6 +139,10 @@ typedef NS_ENUM(NSInteger, SuperPlayerLayoutStyle) {
  */
 @property NSArray<SPVideoFrameDescription *> *keyFrameDescList;
 /**
+ *videoResolution 视频分辨率，开始播放后获取到
+ */
+@property(nonatomic,assign)CGSize videoResolution;
+/**
  * 播放model
  */
 - (void)playWithModel:(SuperPlayerModel *)playerModel;

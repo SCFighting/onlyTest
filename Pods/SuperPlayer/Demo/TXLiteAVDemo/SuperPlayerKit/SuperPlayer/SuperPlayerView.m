@@ -1238,9 +1238,9 @@ static UISlider *_volumeSlider;
         if (!self.isLoaded) {
             return NO;
         }
-        if (self.isLockScreen) {
-            return NO;
-        }
+//        if (self.isLockScreen) {
+//            return NO;
+//        }
         if (SuperPlayerWindowShared.isShowing) {
             return NO;
         }
@@ -1252,7 +1252,7 @@ static UISlider *_volumeSlider;
             CGPoint veloctyPoint = [pan velocityInView:self];
             CGFloat pointX = fabs(veloctyPoint.x);
             CGFloat pointY = fabs(veloctyPoint.y);
-            if (pointX > pointY) {
+            if (pointX > pointY&&!_isLive) {
                 return YES;
             } else {
                 return self.disableGesture ? YES : NO;
@@ -1929,6 +1929,14 @@ static UISlider *_volumeSlider;
             self.state = StatePrepare;
             [self detailPrepareState];
         }
+        //------------begin本地添加为了获取视频分辨率begin---------
+        if (EvtID == PLAY_EVT_RCV_FIRST_I_FRAME) {
+            self.videoResolution = CGSizeMake([self.vodPlayer width], [self.vodPlayer height]);
+            if ([self.delegate respondsToSelector:@selector(superPlayerDidStart:)]) {
+                [self.delegate superPlayerDidStart:self];
+            }
+        }
+        //------------end本地添加为了获取视频分辨率end---------
         if (EvtID == PLAY_EVT_PLAY_PROGRESS) {
             [self detailProgress];
             self.playCurrentTime = player.currentPlaybackTime;
@@ -2085,7 +2093,14 @@ static UISlider *_volumeSlider;
                 [self.controlView setProgressTime:self.maxLiveProgressTime totalTime:-1 progressValue:1 playableValue:0];
             }
         }
-        
+        //------------begin本地添加为了获取视频分辨率begin---------
+        else if (EvtID == PLAY_EVT_RCV_FIRST_I_FRAME) {
+            self.videoResolution = CGSizeMake([[param objectForKey:@"EVT_WIDTH"] integerValue], [[param objectForKey:@"EVT_HEIGHT"] integerValue]);
+            if ([self.delegate respondsToSelector:@selector(superPlayerDidStart:)]) {
+                [self.delegate superPlayerDidStart:self];
+            }
+        }
+        //------------end本地添加为了获取视频分辨率end---------
         if ([self.playListener respondsToSelector:@selector(onLivePlayEvent:event:withParam:)]) {
             [self.playListener onLivePlayEvent:self.livePlayer event:EvtID withParam:dict];
         }
@@ -2113,8 +2128,16 @@ static UISlider *_volumeSlider;
     NSString *       videoURL   = self.playerModel.playingDefinitionUrl;
     NSURLComponents *components = [NSURLComponents componentsWithString:videoURL];
     NSString *       scheme     = [[components scheme] lowercaseString];
-    if ([scheme isEqualToString:@"rtmp"]) {
-        playType = PLAY_TYPE_LIVE_RTMP;
+    if ([scheme isEqualToString:@"rtmp"])
+    {
+        if(self.playerModel.ACC)
+        {
+            playType = PLAY_TYPE_LIVE_RTMP_ACC;
+        }
+        else
+        {
+            playType = PLAY_TYPE_LIVE_RTMP;
+        }
     } else if ([scheme hasPrefix:@"http"] && [[components path].lowercaseString hasSuffix:@".flv"]) {
         playType = PLAY_TYPE_LIVE_FLV;
     }

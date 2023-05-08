@@ -79,6 +79,8 @@ typedef NS_ENUM(NSInteger, SuperPlayerAction) {
 @property (nonatomic, strong) NSString *name;
 
 @property (nonatomic, strong) DynamicWaterModel *dynamicWaterModel;
+///是否是连麦加速流(默认为NO)
+@property(nonatomic, assign) BOOL ACC;
 
 @end
 
