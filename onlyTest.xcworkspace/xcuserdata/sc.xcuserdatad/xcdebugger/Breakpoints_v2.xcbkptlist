@@ -48,8 +48,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "1535"
             endingLineNumber = "1535"
-            landmarkName = "SuperPlayerView"
-            landmarkType = "3">
+            landmarkName = "-setControlView:"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
