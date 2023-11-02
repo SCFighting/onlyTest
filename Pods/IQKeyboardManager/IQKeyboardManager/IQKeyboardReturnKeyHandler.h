@@ -21,12 +21,10 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-#import <IQKeyboardManagerConstants.h>
+#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
-#import <Foundation/NSObject.h>
-#import <Foundation/NSObjCRuntime.h>
-
-#import <UIKit/UITextInputTraits.h>
+#import "IQKeyboardManagerConstants.h"
 
 @class UITextField, UIView, UIViewController;
 @protocol UITextFieldDelegate, UITextViewDelegate;
@@ -34,6 +32,7 @@
 /**
  Manages the return key to work like next/done in a view hierarchy.
  */
+NS_EXTENSION_UNAVAILABLE_IOS("Unavailable in extension")
 @interface IQKeyboardReturnKeyHandler : NSObject
 
 ///----------------------

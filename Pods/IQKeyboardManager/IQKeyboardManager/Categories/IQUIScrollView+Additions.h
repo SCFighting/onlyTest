@@ -21,10 +21,10 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-#import <UIKit/UITableView.h>
-#import <UIKit/UICollectionView.h>
+#import <UIKit/UIKit.h>
 
 
+NS_EXTENSION_UNAVAILABLE_IOS("Unavailable in extension")
 @interface UIScrollView (Additions)
 
 /**
@@ -45,6 +45,7 @@
 
 @end
 
+NS_EXTENSION_UNAVAILABLE_IOS("Unavailable in extension")
 @interface UITableView (PreviousNextIndexPath)
 
 -(nullable NSIndexPath*)previousIndexPathOfIndexPath:(nonnull NSIndexPath*)indexPath;
@@ -52,6 +53,7 @@
 
 @end
 
+NS_EXTENSION_UNAVAILABLE_IOS("Unavailable in extension")
 @interface UICollectionView (PreviousNextIndexPath)
 
 -(nullable NSIndexPath*)previousIndexPathOfIndexPath:(nonnull NSIndexPath*)indexPath;

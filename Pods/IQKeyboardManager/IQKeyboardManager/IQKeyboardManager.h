@@ -21,26 +21,22 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-#import <IQKeyboardManagerConstants.h>
-#import <IQUIView+IQKeyboardToolbar.h>
-#import <IQPreviousNextView.h>
-#import <IQUIViewController+Additions.h>
-#import <IQKeyboardReturnKeyHandler.h>
-#import <IQTextView.h>
-#import <IQToolbar.h>
-#import <IQUIScrollView+Additions.h>
-#import <IQUITextFieldView+Additions.h>
-#import <IQBarButtonItem.h>
-#import <IQTitleBarButtonItem.h>
-#import <IQUIView+Hierarchy.h>
+#import <CoreGraphics/CoreGraphics.h>
+#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
-#import <CoreGraphics/CGBase.h>
-
-#import <Foundation/NSObject.h>
-#import <Foundation/NSObjCRuntime.h>
-#import <Foundation/NSSet.h>
-
-#import <UIKit/UITextInputTraits.h>
+#import "IQKeyboardManagerConstants.h"
+#import "IQUIView+IQKeyboardToolbar.h"
+#import "IQPreviousNextView.h"
+#import "IQUIViewController+Additions.h"
+#import "IQKeyboardReturnKeyHandler.h"
+#import "IQTextView.h"
+#import "IQToolbar.h"
+#import "IQUIScrollView+Additions.h"
+#import "IQUITextFieldView+Additions.h"
+#import "IQBarButtonItem.h"
+#import "IQTitleBarButtonItem.h"
+#import "IQUIView+Hierarchy.h"
 
 @class UIFont, UIColor, UITapGestureRecognizer, UIView, UIImage;
 
@@ -65,6 +61,8 @@ extern NSInteger const kIQPreviousNextButtonToolbarTag;
 /**
  Codeless drop-in universal library allows to prevent issues of keyboard sliding up and cover UITextField/UITextView. Neither need to write any code nor any setup required and much more. A generic version of KeyboardManagement. https://developer.apple.com/library/ios/documentation/StringsTextFonts/Conceptual/TextAndWebiPhoneOS/KeyboardManagement/KeyboardManagement.html
  */
+
+NS_EXTENSION_UNAVAILABLE_IOS("Unavailable in extension")
 @interface IQKeyboardManager : NSObject
 
 ///--------------------------

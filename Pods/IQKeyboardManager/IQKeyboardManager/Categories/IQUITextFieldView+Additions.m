@@ -21,9 +21,11 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-#import "IQUITextFieldView+Additions.h"
 #import <objc/runtime.h>
 
+#import "IQUITextFieldView+Additions.h"
+
+NS_EXTENSION_UNAVAILABLE_IOS("Unavailable in extension")
 @implementation UIView (Additions)
 
 -(void)setKeyboardDistanceFromTextField:(CGFloat)keyboardDistanceFromTextField

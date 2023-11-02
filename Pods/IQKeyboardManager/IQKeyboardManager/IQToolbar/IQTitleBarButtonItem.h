@@ -21,14 +21,16 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-#import <IQKeyboardManagerConstants.h>
-#import <IQBarButtonItem.h>
+#import <Foundation/Foundation.h>
 
-#import <Foundation/NSObjCRuntime.h>
+#import "IQKeyboardManagerConstants.h"
+#import "IQBarButtonItem.h"
+
 
 /**
  BarButtonItem with title text.
  */
+NS_EXTENSION_UNAVAILABLE_IOS("Unavailable in extension")
 @interface IQTitleBarButtonItem : IQBarButtonItem
 
 /**

@@ -21,10 +21,11 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-#import <UIKit/UIViewController.h>
+#import <UIKit/UIKit.h>
 
 @class NSLayoutConstraint;
 
+NS_EXTENSION_UNAVAILABLE_IOS("Unavailable in extension")
 @interface UIViewController (Additions)
 
 /**

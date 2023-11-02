@@ -21,15 +21,16 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-#import <UIKit/UIView.h>
-#import <UIKit/UIViewController.h>
-#import <IQKeyboardManagerConstants.h>
+#import <UIKit/UIKit.h>
+
+#import "IQKeyboardManagerConstants.h"
 
 @class UICollectionView, UIScrollView, UITableView, UISearchBar, NSArray;
 
 /**
  UIView hierarchy category.
  */
+NS_EXTENSION_UNAVAILABLE_IOS("Unavailable in extension")
 @interface UIView (IQ_UIView_Hierarchy)
 
 ///----------------------
@@ -123,6 +124,7 @@
 /**
  NSObject category to used for logging purposes
  */
+NS_EXTENSION_UNAVAILABLE_IOS("Unavailable in extension")
 @interface NSObject (IQ_Logging)
 
 /**
