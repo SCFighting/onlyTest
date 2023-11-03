@@ -570,10 +570,6 @@ SOFTWARE.
 
 
 
-## google-cast-sdk
-
-https://developers.google.com/terms/
-
 ## libwebp
 
 Copyright (c) 2010, Google Inc. All rights reserved.

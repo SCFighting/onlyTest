@@ -109,16 +109,6 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>google-cast-sdk-CastFrameworkAssets.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>google-cast-sdk.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 		<key>libwebp.xcscheme</key>
 		<dict>
 			<key>isShown</key>

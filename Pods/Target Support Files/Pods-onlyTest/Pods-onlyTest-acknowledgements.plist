@@ -691,16 +691,6 @@ SOFTWARE.
 		</dict>
 		<dict>
 			<key>FooterText</key>
-			<string>https://developers.google.com/terms/</string>
-			<key>License</key>
-			<string>Commercial</string>
-			<key>Title</key>
-			<string>google-cast-sdk</string>
-			<key>Type</key>
-			<string>PSGroupSpecifier</string>
-		</dict>
-		<dict>
-			<key>FooterText</key>
 			<string>Copyright (c) 2010, Google Inc. All rights reserved.
 
 Redistribution and use in source and binary forms, with or without
