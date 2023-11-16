@@ -89,7 +89,7 @@
 
 #elif defined(__has_include) && __has_include("DDLogMacros.h")
 
-#import "DDLogMacros.h"
+#import <CocoaLumberjack/DDLogMacros.h>
 
 #define __GCDWEBSERVER_LOGGING_FACILITY_COCOALUMBERJACK__
 

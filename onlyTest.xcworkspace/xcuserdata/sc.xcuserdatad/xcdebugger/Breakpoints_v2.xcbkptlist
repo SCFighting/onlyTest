@@ -97,7 +97,117 @@
                   endingLineNumber = "1526"
                   offsetFromSymbolStart = "24">
                </Location>
+               <Location
+                  uuid = "B9690A5F-7A51-4573-B398-7430307003AE - 9d84d93b7fe24b10"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[SuperPlayerView setControlView:]"
+                  moduleName = "onlyTest"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/sc/Desktop/App/Study/onlyTest/Pods/SuperPlayer/Demo/TXLiteAVDemo/SuperPlayerKit/SuperPlayer/SuperPlayerView.m"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "1529"
+                  endingLineNumber = "1529"
+                  offsetFromSymbolStart = "104">
+               </Location>
+               <Location
+                  uuid = "B9690A5F-7A51-4573-B398-7430307003AE - 91339439b18d38fa"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__34-[SuperPlayerView setControlView:]_block_invoke"
+                  moduleName = "onlyTest"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/sc/Desktop/App/Study/onlyTest/Pods/SuperPlayer/Demo/TXLiteAVDemo/SuperPlayerKit/SuperPlayer/SuperPlayerView.m"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "1530"
+                  endingLineNumber = "1530"
+                  offsetFromSymbolStart = "24">
+               </Location>
             </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "DE21AA77-0607-4E44-A2C2-123A1F917299"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "onlyTest/ViewController.m"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "50"
+            endingLineNumber = "50"
+            landmarkName = "-touchesBegan:withEvent:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "135F0B56-7048-411B-8DC8-804034653482"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "onlyTest/TestViewController.m"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "46"
+            endingLineNumber = "46"
+            landmarkName = "-devicePicker:didSelectDevice:"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "135F0B56-7048-411B-8DC8-804034653482 - 187d1eef15015090"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[TestViewController devicePicker:didSelectDevice:]"
+                  moduleName = "onlyTest"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/sc/Desktop/App/Study/onlyTest/onlyTest/TestViewController.m"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "45"
+                  endingLineNumber = "45"
+                  offsetFromSymbolStart = "60">
+               </Location>
+               <Location
+                  uuid = "135F0B56-7048-411B-8DC8-804034653482 - 187d1eef150150b1"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[TestViewController devicePicker:didSelectDevice:]"
+                  moduleName = "onlyTest"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/sc/Desktop/App/Study/onlyTest/onlyTest/TestViewController.m"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "46"
+                  endingLineNumber = "46"
+                  offsetFromSymbolStart = "60">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "F88897B2-3B35-45B0-8FB8-77D2FAB082D3"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "onlyTest/TestViewController.m"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "53"
+            endingLineNumber = "53"
+            landmarkName = "-connectableDeviceConnectionSuccess:forService:"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

@@ -16,6 +16,7 @@
 #import "UIView+layout.h"
 #import <SDWebImage/SDWebImage.h>
 #import <SDWebImageWebPCoder/SDWebImageWebPCoder.h>
+#import "TestViewController.h"
 //#import "UIView+wwww.h"
 //#import "UIView+layout.h"
 #ifdef DEBUG
@@ -32,12 +33,27 @@ static const int ddLogLevel = DDLogLevelError;
 
 @implementation ViewController
 
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = UIColor.whiteColor;
+    
+    
 //    NSLog(@"%@",txli)
-    [self testPlayer];
+//    [self testPlayer];
 }
+
+
+
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
+{
+    [super touchesBegan:touches withEvent:event];
+    TestViewController *vc = [[TestViewController alloc] init];
+    [self.navigationController pushViewController:vc animated:YES];
+    
+}
+
+
 
 -(void)testGroup
 {

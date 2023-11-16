@@ -13,6 +13,7 @@ target 'onlyTest' do
   pod 'IQKeyboardManager'
   pod 'WebViewJavascriptBridge'
   pod 'MJRefresh'
+  pod 'MBProgressHUD', '~> 1.2.0'
   pod 'CHTCollectionViewWaterfallLayout'
   pod 'TZImagePickerController'
   pod 'AFNetworking', '~> 4.0.1'
@@ -25,12 +26,23 @@ target 'onlyTest' do
   target 'onlyTestUITests' do
     # Pods for testing
   end
-  post_install do |installer|
-    installer.pods_project.targets.each do |target|
-      target.build_configurations.each do |config|
-        config.build_settings["EXCLUDED_ARCHS[sdk=iphonesimulator*]"] = "arm64"
-        config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '11.0'
+  post_integrate do |installer|
+    compiler_flags_key = 'COMPILER_FLAGS'
+    project_path = 'Pods/Pods.xcodeproj'
+
+    project = Xcodeproj::Project.open(project_path)
+    project.targets.each do |target|
+      target.build_phases.each do |build_phase|
+        if build_phase.is_a?(Xcodeproj::Project::Object::PBXSourcesBuildPhase)
+          build_phase.files.each do |file|
+            if !file.settings.nil? && file.settings.key?(compiler_flags_key)
+              compiler_flags = file.settings[compiler_flags_key]
+              file.settings[compiler_flags_key] = compiler_flags.gsub(/-DOS_OBJECT_USE_OBJC=0\s*/, '')
+            end
+          end
+        end
       end
     end
+    project.save()
   end
 end
