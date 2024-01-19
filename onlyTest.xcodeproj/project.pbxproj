@@ -19,7 +19,6 @@
 		52998DE224ADB94300F3CF18 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52998DE024ADB94300F3CF18 /* LaunchScreen.storyboard */; };
 		52998DE524ADB94300F3CF18 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 52998DE424ADB94300F3CF18 /* main.m */; };
 		52998DEF24ADB94300F3CF18 /* onlyTestUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 52998DEE24ADB94300F3CF18 /* onlyTestUITests.m */; };
-		52A9DD272AF648160018730F /* TestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 52A9DD262AF648160018730F /* TestViewController.m */; };
 		9AA7BC7D3D07E592DE0FA436 /* Pods_onlyTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B338DFF27E16FA5AEEA3136D /* Pods_onlyTest.framework */; };
 		D69AC515E5A582EB7F4E8D1E /* Pods_onlyTest_onlyTestUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6051FDC0A5961763A33BB5CD /* Pods_onlyTest_onlyTestUITests.framework */; };
 /* End PBXBuildFile section */
@@ -58,8 +57,6 @@
 		52998DEA24ADB94300F3CF18 /* onlyTestUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = onlyTestUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		52998DEE24ADB94300F3CF18 /* onlyTestUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = onlyTestUITests.m; sourceTree = "<group>"; };
 		52998DF024ADB94300F3CF18 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		52A9DD252AF648160018730F /* TestViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TestViewController.h; sourceTree = "<group>"; };
-		52A9DD262AF648160018730F /* TestViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TestViewController.m; sourceTree = "<group>"; };
 		6051FDC0A5961763A33BB5CD /* Pods_onlyTest_onlyTestUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_onlyTest_onlyTestUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6E84DB5272418D3EB08EA4F4 /* Pods-onlyTest.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-onlyTest.debug.xcconfig"; path = "Target Support Files/Pods-onlyTest/Pods-onlyTest.debug.xcconfig"; sourceTree = "<group>"; };
 		8A966896EB0A5AE56DF192C3 /* Pods-onlyTest-onlyTestUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-onlyTest-onlyTestUITests.release.xcconfig"; path = "Target Support Files/Pods-onlyTest-onlyTestUITests/Pods-onlyTest-onlyTestUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -130,8 +127,6 @@
 				521958FE2628137E0028D3D5 /* UIView+layout.m */,
 				52195902262813E80028D3D5 /* TestView.h */,
 				52195903262813E80028D3D5 /* TestView.m */,
-				52A9DD252AF648160018730F /* TestViewController.h */,
-				52A9DD262AF648160018730F /* TestViewController.m */,
 			);
 			path = onlyTest;
 			sourceTree = "<group>";
@@ -392,7 +387,6 @@
 				52195904262813E80028D3D5 /* TestView.m in Sources */,
 				52998DE524ADB94300F3CF18 /* main.m in Sources */,
 				5238EC0D25721E9100AF5BD9 /* TestController.m in Sources */,
-				52A9DD272AF648160018730F /* TestViewController.m in Sources */,
 				5219594226282F9A0028D3D5 /* UIView+wwww.m in Sources */,
 				521958FF2628137E0028D3D5 /* UIView+layout.m in Sources */,
 			);

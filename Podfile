@@ -23,7 +23,6 @@ target 'onlyTest' do
   pod 'TXIMSDK_Plus_iOS'
   pod 'BlocksKit'
   pod 'KVOController'
-  pod 'ConnectSDK/Core'
   target 'onlyTestUITests' do
     # Pods for testing
   end

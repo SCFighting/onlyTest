@@ -16,7 +16,6 @@
 #import "UIView+layout.h"
 #import <SDWebImage/SDWebImage.h>
 #import <SDWebImageWebPCoder/SDWebImageWebPCoder.h>
-#import "TestViewController.h"
 //#import "UIView+wwww.h"
 //#import "UIView+layout.h"
 #ifdef DEBUG
@@ -48,8 +47,8 @@ static const int ddLogLevel = DDLogLevelError;
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
 {
     [super touchesBegan:touches withEvent:event];
-    TestViewController *vc = [[TestViewController alloc] init];
-    [self.navigationController pushViewController:vc animated:YES];
+//    TestViewController *vc = [[TestViewController alloc] init];
+//    [self.navigationController pushViewController:vc animated:YES];
     
 }
 
