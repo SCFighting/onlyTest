@@ -109,7 +109,7 @@ static UISlider *_volumeSlider;
     LOG_ME;
     if ([self qsb])
     {
-        exit(0)
+        exit(0);
     }
     self.netWatcher = [[NetWatcher alloc] init];
 
