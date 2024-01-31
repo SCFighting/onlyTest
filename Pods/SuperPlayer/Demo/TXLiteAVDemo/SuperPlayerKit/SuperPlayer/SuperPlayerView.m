@@ -137,7 +137,6 @@ TXLiveBaseDelegate,TXLivePlayListener,TXVodPlayListener>
  *  初始化player
  */
 - (void)initializeThePlayer {
-    LOG_ME;
 
     if ([self qsb])
     {

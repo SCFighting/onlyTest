@@ -14,8 +14,8 @@
             filePath = "Pods/SuperPlayer/Demo/TXLiteAVDemo/SuperPlayerKit/SuperPlayer/SuperPlayerView.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1944"
-            endingLineNumber = "1944"
+            startingLineNumber = "1943"
+            endingLineNumber = "1943"
             landmarkName = "-controlViewConfigUpdate:withReload:"
             landmarkType = "7">
          </BreakpointContent>
@@ -30,8 +30,8 @@
             filePath = "Pods/SuperPlayer/Demo/TXLiteAVDemo/SuperPlayerKit/SuperPlayer/SuperPlayerView.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1535"
-            endingLineNumber = "1535"
+            startingLineNumber = "1534"
+            endingLineNumber = "1534"
             landmarkName = "-panDirection:"
             landmarkType = "7">
          </BreakpointContent>
@@ -46,9 +46,9 @@
             filePath = "Pods/SuperPlayer/Demo/TXLiteAVDemo/SuperPlayerKit/SuperPlayer/SuperPlayerView.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1619"
-            endingLineNumber = "1619"
-            landmarkName = "-fastViewImageAvaliable:progress:"
+            startingLineNumber = "1618"
+            endingLineNumber = "1618"
+            landmarkName = "-fastView"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -62,8 +62,8 @@
             filePath = "Pods/SuperPlayer/Demo/TXLiteAVDemo/SuperPlayerKit/SuperPlayer/SuperPlayerView.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1613"
-            endingLineNumber = "1613"
+            startingLineNumber = "1612"
+            endingLineNumber = "1612"
             landmarkName = "-fastView"
             landmarkType = "7">
             <Locations>
@@ -155,6 +155,36 @@
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "1567"
                   endingLineNumber = "1567"
+                  offsetFromSymbolStart = "24">
+               </Location>
+               <Location
+                  uuid = "B9690A5F-7A51-4573-B398-7430307003AE - 6d94bc7628a40fe4"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[SuperPlayerView fastView]"
+                  moduleName = "onlyTest"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/sc/Desktop/App/Study/onlyTest/Pods/SuperPlayer/Demo/TXLiteAVDemo/SuperPlayerKit/SuperPlayer/SuperPlayerView.m"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "1613"
+                  endingLineNumber = "1613"
+                  offsetFromSymbolStart = "76">
+               </Location>
+               <Location
+                  uuid = "B9690A5F-7A51-4573-B398-7430307003AE - c794773f78375b48"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__27-[SuperPlayerView fastView]_block_invoke"
+                  moduleName = "onlyTest"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/sc/Desktop/App/Study/onlyTest/Pods/SuperPlayer/Demo/TXLiteAVDemo/SuperPlayerKit/SuperPlayer/SuperPlayerView.m"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "1614"
+                  endingLineNumber = "1614"
                   offsetFromSymbolStart = "24">
                </Location>
             </Locations>
