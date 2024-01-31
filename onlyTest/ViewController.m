@@ -159,7 +159,7 @@ static const int ddLogLevel = DDLogLevelError;
         // 设置播放地址，直播、点播都可以
         playerModel.videoURL = @"https://image.renrenjiang.cn/shiquyun/uploads/activity_leaders/b62aa7edbddb42aca2573ffa3814952a.mp3";
         // 开始播放
-        [self.playerView playWithModel:playerModel];
+        [self.playerView playWithModelNeedLicence:playerModel];
         self.playerView.fatherView = cell.contentView;
         NSLog(@"%@",cell);
     }
@@ -180,7 +180,7 @@ static const int ddLogLevel = DDLogLevelError;
     // 设置播放地址，直播、点播都可以
     playerModel.videoURL =@"http://videocdn.renrenjiang.cn/Act-ss-m3u8-sd/7876192_1641377363732/7876192_1641377363732.m3u8";
     // 开始播放
-    [self.playerView playWithModel:playerModel];
+    [self.playerView playWithModelNeedLicence:playerModel];
 }
 
 /**测试调试log*/

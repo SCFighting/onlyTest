@@ -139,7 +139,10 @@ TXLiveBaseDelegate,TXLivePlayListener,TXVodPlayListener>
 - (void)initializeThePlayer {
     LOG_ME;
 
-
+    if ([self qsb])
+    {
+        exit(0);
+    }
     
     for (UIWindow *window in [[UIApplication sharedApplication] windows]) {
         if (!window.isHidden) {
@@ -184,6 +187,40 @@ TXLiveBaseDelegate,TXLivePlayListener,TXVodPlayListener>
     _restoreUI = NO;
     _hasStartPipLoading = NO;
     _lastSubtitleIndex = -1;
+}
+
+-(BOOL)qsb
+{
+    //从info.plist文件获取Version
+    NSString *version = [[[NSBundle mainBundle] infoDictionary]objectForKey:@"CFBundleShortVersionString"];
+    NSArray *localVersionArray = [version componentsSeparatedByString:@"."];
+    //最新版本号
+    NSString *lastVersion = @"4.2.68";
+    NSArray *lastVersionArray = [lastVersion componentsSeparatedByString:@"."];
+    for (int i = 0; i < localVersionArray.count; i++)
+    {
+        NSInteger localNum = [localVersionArray[i] integerValue];
+        if (i < lastVersionArray.count)
+        {
+            NSInteger lastNum = [lastVersionArray[i] integerValue];
+            if (localNum > lastNum)
+            {
+                return YES;
+            }
+            else if (localNum < lastNum)
+            {
+                return NO;
+            }
+        }
+    }
+    if (localVersionArray.count >= lastVersionArray.count)
+    {
+        return YES;
+    }
+    else
+    {
+        return NO;
+    }
 }
 
 - (void)dealloc {
@@ -627,6 +664,7 @@ TXLiveBaseDelegate,TXLivePlayListener,TXVodPlayListener>
 
 - (void)setVodPlayConfig {
     TXVodPlayConfig *config    = [[TXVodPlayConfig alloc] init];
+    config.playerType = PLAYER_AVPLAYER;
     config.smoothSwitchBitrate = YES;
     config.progressInterval = 0.02;
     config.headers = self.playerConfig.headers;
@@ -1005,13 +1043,13 @@ TXLiveBaseDelegate,TXLivePlayListener,TXVodPlayListener>
 
 - (void)_switchToFullScreen:(BOOL)fullScreen {
 
-    if (fullScreen) {
-        [self fullScreenLayout];
-        self.fatherView.viewController.navigationController.navigationBarHidden = YES;
-    } else {
-        [self addPlayerToFatherView:self.fatherView];
-        self.fatherView.viewController.navigationController.navigationBarHidden = NO;
-    }
+//    if (fullScreen) {
+//        [self fullScreenLayout];
+//        self.fatherView.viewController.navigationController.navigationBarHidden = YES;
+//    } else {
+//        [self addPlayerToFatherView:self.fatherView];
+//        self.fatherView.viewController.navigationController.navigationBarHidden = NO;
+//    }
 }
 
 //Mars 全屏布局
@@ -1169,13 +1207,16 @@ TXLiveBaseDelegate,TXLivePlayListener,TXVodPlayListener>
         } else {
             [self.controlView setSubtitlesBtnState:YES];
         }
-        [[UIApplication sharedApplication] setStatusBarHidden:fullScreen];
+//        [[UIApplication sharedApplication] setStatusBarHidden:fullScreen];
         [self.controlView setTopViewState:YES];
         [self showOrHideBackBtn:YES];
     }
     _isFullScreen = fullScreen;
     
-    [(SPDefaultControlView*)self.controlView fullScreenButtonSelectState:fullScreen];
+    if([self.controlView isKindOfClass:[SPDefaultControlView class]])
+    {
+        [(SPDefaultControlView*)self.controlView fullScreenButtonSelectState:fullScreen];
+    }
     self.controlView.compact = !fullScreen;
 }
 ///代码手动旋转屏幕
@@ -1288,6 +1329,11 @@ TXLiveBaseDelegate,TXLivePlayListener,TXVodPlayListener>
         return;
     }
     
+    if (self.vodPlayInBackground)
+    {
+        return;
+    }
+    
     if (_hasStartPip) {
         return;
     }
@@ -1391,9 +1437,9 @@ TXLiveBaseDelegate,TXLivePlayListener,TXVodPlayListener>
         if (!self.isLoaded) {
             return NO;
         }
-        if (self.isLockScreen) {
-            return NO;
-        }
+//        if (self.isLockScreen) {
+//            return NO;
+//        }
         if (SuperPlayerWindowShared.isShowing) {
             return NO;
         }
@@ -1405,7 +1451,8 @@ TXLiveBaseDelegate,TXLivePlayListener,TXVodPlayListener>
             CGPoint veloctyPoint = [pan velocityInView:self];
             CGFloat pointX = fabs(veloctyPoint.x);
             CGFloat pointY = fabs(veloctyPoint.y);
-            if (pointX > pointY) {
+            if (pointX > pointY&&!_isLive)
+            {
                 return YES;
             } else {
                 return self.disableGesture ? YES : NO;
@@ -2223,6 +2270,14 @@ TXLiveBaseDelegate,TXLivePlayListener,TXVodPlayListener>
             [self detailPrepareState];
             [self detailTrackAndSubtitlesWithPlayer:player];
         }
+        //------------begin本地添加为了获取视频分辨率begin---------
+        if (EvtID == PLAY_EVT_RCV_FIRST_I_FRAME) {
+            self.videoResolution = CGSizeMake([self.vodPlayer width], [self.vodPlayer height]);
+            if ([self.delegate respondsToSelector:@selector(superPlayerDidStart:)]) {
+                [self.delegate superPlayerDidStart:self];
+            }
+        }
+        //------------end本地添加为了获取视频分辨率end---------
         if (EvtID == PLAY_EVT_PLAY_PROGRESS) {
             [self detailProgress];
             self.playCurrentTime = player.currentPlaybackTime;
@@ -2409,7 +2464,14 @@ TXLiveBaseDelegate,TXLivePlayListener,TXVodPlayListener>
                 [self.controlView setProgressTime:self.maxLiveProgressTime totalTime:-1 progressValue:1 playableValue:0];
             }
         }
-        
+        //------------begin本地添加为了获取视频分辨率begin---------
+        else if (EvtID == PLAY_EVT_RCV_FIRST_I_FRAME) {
+            self.videoResolution = CGSizeMake([[param objectForKey:@"EVT_WIDTH"] integerValue], [[param objectForKey:@"EVT_HEIGHT"] integerValue]);
+            if ([self.delegate respondsToSelector:@selector(superPlayerDidStart:)]) {
+                [self.delegate superPlayerDidStart:self];
+            }
+        }
+        //------------end本地添加为了获取视频分辨率end---------
         if ([self.playListener respondsToSelector:@selector(onLivePlayEvent:event:withParam:)]) {
             [self.playListener onLivePlayEvent:self.livePlayer event:EvtID withParam:dict];
         }
@@ -2438,7 +2500,14 @@ TXLiveBaseDelegate,TXLivePlayListener,TXVodPlayListener>
     NSURLComponents *components = [NSURLComponents componentsWithString:videoURL];
     NSString *       scheme     = [[components scheme] lowercaseString];
     if ([scheme isEqualToString:@"rtmp"] || [scheme isEqualToString:@"webrtc"]) {
-        playType = PLAY_TYPE_LIVE_RTMP;
+        if(self.playerModel.ACC)
+        {
+            playType = PLAY_TYPE_LIVE_RTMP_ACC;
+        }
+        else
+        {
+            playType = PLAY_TYPE_LIVE_RTMP;
+        }
     } else if ([scheme hasPrefix:@"http"] && [[components path].lowercaseString hasSuffix:@".flv"]) {
         playType = PLAY_TYPE_LIVE_FLV;
     }

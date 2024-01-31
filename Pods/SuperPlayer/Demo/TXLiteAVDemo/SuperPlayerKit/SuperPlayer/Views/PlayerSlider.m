@@ -16,7 +16,7 @@
 - (instancetype)init {
     self = [super init];
 
-    self.holder           = [[UIControl alloc] initWithFrame:CGRectMake(0, 0, 30, 30)];
+    self.holder           = [[UIControl alloc] initWithFrame:CGRectMake(0, 0, 15, 15)];
     UIView *inter         = [[UIView alloc] initWithFrame:CGRectMake(14, 14, 2, 2)];
     inter.backgroundColor = [UIColor whiteColor];
     [self.holder addSubview:inter];

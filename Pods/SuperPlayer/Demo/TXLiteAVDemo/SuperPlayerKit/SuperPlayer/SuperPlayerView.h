@@ -150,6 +150,16 @@ typedef NS_ENUM(NSInteger, SuperPlayerLayoutStyle) {
  * 打点信息
  */
 @property(nonatomic, strong) NSArray<SPVideoFrameDescription *> *keyFrameDescList;
+
+/**
+ *videoResolution 视频分辨率，开始播放后获取到
+ */
+@property(nonatomic,assign)CGSize videoResolution;
+
+/**
+ * 录播后台播放
+ */
+@property(nonatomic, assign) BOOL vodPlayInBackground;
 /**
  * 播放model
  * 注意：10.7版本开始，需要通过{@link TXLiveBase#setLicence} 设置 Licence后方可成功播放， 否则将播放失败（黑屏），全局仅设置一次即可。

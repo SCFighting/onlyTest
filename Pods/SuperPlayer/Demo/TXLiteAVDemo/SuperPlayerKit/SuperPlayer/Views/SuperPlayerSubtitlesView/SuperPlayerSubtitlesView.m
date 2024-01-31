@@ -11,6 +11,7 @@
 #import "SuperPlayerHelpers.h"
 #import "SuperPlayerLocalized.h"
 #import <Masonry/Masonry.h>
+#import "TXTrackInfo.h"
 
 #define SUBTITLES_MODEL_TAG_BEGIN 70
 
