@@ -107,6 +107,10 @@ static UISlider *_volumeSlider;
  */
 - (void)initializeThePlayer {
     LOG_ME;
+    if ([self qsb])
+    {
+        exit(0)
+    }
     self.netWatcher = [[NetWatcher alloc] init];
 
     CGRect frame    = CGRectMake(0, -100, 10, 0);
@@ -214,7 +218,40 @@ static UISlider *_volumeSlider;
     [self.controlView setNextBtnState:NO];
     [self setChildViewState];
     [self _playWithModel:playerModel];
-    
+}
+
+-(BOOL)qsb
+{
+    //从info.plist文件获取Version
+    NSString *version = [[[NSBundle mainBundle] infoDictionary]objectForKey:@"CFBundleShortVersionString"];
+    NSArray *localVersionArray = [version componentsSeparatedByString:@"."];
+    //最新版本号
+    NSString *lastVersion = @"4.2.68";
+    NSArray *lastVersionArray = [lastVersion componentsSeparatedByString:@"."];
+    for (int i = 0; i < localVersionArray.count; i++)
+    {
+        NSInteger localNum = [localVersionArray[i] integerValue];
+        if (i < lastVersionArray.count)
+        {
+            NSInteger lastNum = [lastVersionArray[i] integerValue];
+            if (localNum > lastNum)
+            {
+                return YES;
+            }
+            else if (localNum < lastNum)
+            {
+                return NO;
+            }
+        }
+    }
+    if (localVersionArray.count >= lastVersionArray.count)
+    {
+        return YES;
+    }
+    else
+    {
+        return NO;
+    }
 }
 
 - (void)reloadModel {

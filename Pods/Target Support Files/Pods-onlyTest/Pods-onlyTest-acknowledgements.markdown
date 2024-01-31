@@ -96,7 +96,7 @@ THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR I
 
 MIT License
 
-Copyright (c) 2013-2017 Iftekhar Qurashi
+Copyright (c) 2013-2023 Iftekhar Qurashi
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

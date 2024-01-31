@@ -14,8 +14,8 @@
             filePath = "Pods/SuperPlayer/Demo/TXLiteAVDemo/SuperPlayerKit/SuperPlayer/SuperPlayerView.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1860"
-            endingLineNumber = "1860"
+            startingLineNumber = "1897"
+            endingLineNumber = "1897"
             landmarkName = "-onRepeatClick"
             landmarkType = "7">
          </BreakpointContent>
@@ -30,8 +30,8 @@
             filePath = "Pods/SuperPlayer/Demo/TXLiteAVDemo/SuperPlayerKit/SuperPlayer/SuperPlayerView.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1451"
-            endingLineNumber = "1451"
+            startingLineNumber = "1488"
+            endingLineNumber = "1488"
             landmarkName = "-fastViewProgressAvaliable:"
             landmarkType = "7">
          </BreakpointContent>
@@ -46,10 +46,10 @@
             filePath = "Pods/SuperPlayer/Demo/TXLiteAVDemo/SuperPlayerKit/SuperPlayer/SuperPlayerView.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1535"
-            endingLineNumber = "1535"
-            landmarkName = "-setControlView:"
-            landmarkType = "7">
+            startingLineNumber = "1572"
+            endingLineNumber = "1572"
+            landmarkName = "SuperPlayerView"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -62,8 +62,8 @@
             filePath = "Pods/SuperPlayer/Demo/TXLiteAVDemo/SuperPlayerKit/SuperPlayer/SuperPlayerView.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1529"
-            endingLineNumber = "1529"
+            startingLineNumber = "1566"
+            endingLineNumber = "1566"
             landmarkName = "-setControlView:"
             landmarkType = "7">
             <Locations>
