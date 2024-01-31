@@ -16,7 +16,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "1897"
             endingLineNumber = "1897"
-            landmarkName = "-onRepeatClick"
+            landmarkName = "-controlViewSnapshot:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -32,8 +32,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "1488"
             endingLineNumber = "1488"
-            landmarkName = "-fastViewProgressAvaliable:"
-            landmarkType = "7">
+            landmarkName = "SuperPlayerView"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -48,7 +48,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "1572"
             endingLineNumber = "1572"
-            landmarkName = "-setControlView:"
+            landmarkName = "-fastViewProgressAvaliable:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -64,7 +64,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "1566"
             endingLineNumber = "1566"
-            landmarkName = "-setControlView:"
+            landmarkName = "-fastViewProgressAvaliable:"
             landmarkType = "7">
             <Locations>
                <Location

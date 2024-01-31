@@ -34,6 +34,7 @@
 #import "SuperPlayerModelInternal.h"
 #import "SuperPlayerView.h"
 #import "SuperPlayerViewConfig.h"
+#import "SuperPlayerWindow.h"
 #import "DataReport.h"
 #import "J2Obj.h"
 #import "NetWatcher.h"
