@@ -12,14 +12,16 @@
 #import "SuperPlayerView+Private.h"
 #import "UIView+Fade.h"
 #import "UIView+MMLayout.h"
+#import "SuperPlayerLocalized.h"
 
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wdeprecated-declarations"
 
 #define MODEL_TAG_BEGIN          20
-#define BOTTOM_IMAGE_VIEW_HEIGHT 50
+#define FADEOUTTIME              5
 
-@interface     SPDefaultControlView () <UIGestureRecognizerDelegate, PlayerSliderDelegate>
+@interface     SPDefaultControlView () <UIGestureRecognizerDelegate, PlayerSliderDelegate,
+SuperPlayerTrackViewDelegate, SuperPlayerSubtitlesViewDelegate>
 @property BOOL isLive;
 @end
 
@@ -40,8 +42,12 @@
 
         [self.topImageView addSubview:self.captureBtn];
         [self.topImageView addSubview:self.danmakuBtn];
+        [self.topImageView addSubview:self.offlineBtn];
+        [self.topImageView addSubview:self.trackBtn];
+        [self.topImageView addSubview:self.subtitlesBtn];
         [self.topImageView addSubview:self.moreBtn];
         [self addSubview:self.lockBtn];
+        [self addSubview:self.pipBtn];
         [self.topImageView addSubview:self.backBtn];
 
         [self addSubview:self.playeBtn];
@@ -54,11 +60,21 @@
         [self makeSubViewsConstraints];
 
         self.captureBtn.hidden      = YES;
+        self.pipBtn.hidden          = YES;
         self.danmakuBtn.hidden      = YES;
+        self.offlineBtn.hidden      = YES;
+        self.trackBtn.hidden        = YES;
+        self.subtitlesBtn.hidden    = YES;
         self.moreBtn.hidden         = YES;
         self.resolutionBtn.hidden   = YES;
         self.moreContentView.hidden = YES;
+        self.trackView.hidden       = YES;
+        self.subtitlesView.hidden   = YES;
         self.nextBtn.hidden         = YES;
+        
+        UILongPressGestureRecognizer *longPress=[[UILongPressGestureRecognizer alloc]initWithTarget:self action:@selector(longPressAction:)];
+        longPress.numberOfTouchesRequired = 1;
+        [self addGestureRecognizer:longPress];
         // 初始化时重置controlView
         [self playerResetControlView];
     }
@@ -69,6 +85,14 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
+-(void)longPressAction:(UILongPressGestureRecognizer *)longPress{
+    if (!self.isFullScreen) {
+        return;
+    }
+    if ([self.delegate respondsToSelector:@selector(onLongPressAction:)]) {
+        [self.delegate onLongPressAction:longPress];
+    }
+}
 - (void)makeSubViewsConstraints {
     [self.topImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.leading.trailing.equalTo(self);
@@ -95,13 +119,12 @@
         make.trailing.equalTo(self.moreBtn.mas_leading).offset(-10);
         make.centerY.equalTo(self.backBtn.mas_centerY);
     }];
-
-    [self.danmakuBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.width.mas_equalTo(40);
-        make.height.mas_equalTo(49);
-        make.trailing.equalTo(self.captureBtn.mas_leading).offset(-10);
-        make.centerY.equalTo(self.backBtn.mas_centerY);
-    }];
+    
+    NSArray *buttonStatusArr = @[[NSNumber numberWithBool:self.disableDanmakuBtn],
+                                 [NSNumber numberWithBool:self.disableOfflineBtn],
+                                 [NSNumber numberWithBool:self.disableSubtitlesBtn],
+                                 [NSNumber numberWithBool:self.disableTrackBtn]];
+    [self setTopButtonConstranintsWithStatus:buttonStatusArr];
 
     [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.leading.equalTo(self.backBtn.mas_trailing).offset(5);
@@ -110,14 +133,19 @@
     }];
 
     [self.bottomImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.leading.trailing.bottom.mas_equalTo(0);
-        make.height.mas_equalTo(BOTTOM_IMAGE_VIEW_HEIGHT);
+        make.leading.leading.trailing.mas_offset(0);
+        make.bottom.equalTo(self.mas_bottom);
     }];
 
     [self.startBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.leading.equalTo(self.bottomImageView.mas_leading).offset(5);
         make.top.equalTo(self.bottomImageView.mas_top).offset(10);
         make.width.height.mas_equalTo(30);
+        if (@available(iOS 11.0, *)) {
+            make.bottom.equalTo(self.mas_safeAreaLayoutGuideBottom).offset(-10);
+        } else {
+            make.bottom.equalTo(self.mas_bottom).offset(-10);
+        }
     }];
 
     [self.currentTimeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -140,16 +168,16 @@
     }];
     
     [self.nextBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.trailing.equalTo(self.fullScreenBtn.mas_leading);
+        make.trailing.equalTo(self.bottomImageView.mas_trailing).offset(-35);
         make.centerY.equalTo(self.startBtn.mas_centerY);
         make.width.height.mas_equalTo(30);
     }];
 
     [self.totalTimeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         if (self.nextBtn.hidden) {
-            make.trailing.equalTo(self.fullScreenBtn.mas_leading);
+            make.trailing.equalTo(self.bottomImageView.mas_trailing).offset(-35);
         } else {
-            make.trailing.equalTo(self.nextBtn.mas_leading);
+            make.trailing.equalTo(self.bottomImageView.mas_trailing).offset(-65);
         }
         make.centerY.equalTo(self.startBtn.mas_centerY);
         make.width.mas_equalTo(50);
@@ -167,6 +195,12 @@
         make.centerY.equalTo(self.mas_centerY);
         make.width.height.mas_equalTo(32);
     }];
+    
+    [self.pipBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.trailing.equalTo(self.mas_trailing).offset(-15);
+        make.centerY.equalTo(self.mas_centerY);
+        make.width.height.mas_equalTo(32);
+    }];
 
     [self.playeBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.width.height.mas_equalTo(50);
@@ -175,7 +209,7 @@
 
     [self.backLiveBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.bottom.mas_equalTo(self.startBtn.mas_top).mas_offset(-15);
-        make.width.mas_equalTo(70);
+        make.width.mas_equalTo(150);
         make.centerX.equalTo(self);
     }];
 }
@@ -193,8 +227,13 @@
     self.resoultionCurrentBtn.backgroundColor = RGBA(34, 30, 24, 1);
 
     // topImageView上的按钮的文字
-    [self.resolutionBtn setTitle:sender.titleLabel.text forState:UIControlStateNormal];
-    [self.delegate controlViewSwitch:self withDefinition:sender.titleLabel.text];
+    NSString *titleString = sender.titleLabel.text;
+    NSArray *titlesArray = [titleString componentsSeparatedByString:@"（"];
+    NSArray *resoluArray = [titlesArray.lastObject componentsSeparatedByString:@"）"];
+    NSString *title = titlesArray.firstObject;
+    [self.resolutionBtn setTitle:title.length > 0 ? title : resoluArray.firstObject forState:UIControlStateNormal];
+    [self.delegate controlViewSwitch:self withDefinition:titleString];
+
 }
 
 - (void)backBtnClick:(UIButton *)sender {
@@ -204,8 +243,12 @@
 }
 
 - (void)exitFullScreen:(UIButton *)sender {
-    if ([self.delegate respondsToSelector:@selector(controlViewChangeScreen:withFullScreen:)]) {
-        [self.delegate controlViewChangeScreen:self withFullScreen:NO];
+    if ([self.delegate respondsToSelector:@selector(controlViewChangeScreen:withFullScreen:successBlock:failuerBlock:)]) {
+        [self.delegate controlViewChangeScreen:self withFullScreen:NO successBlock:^{
+            
+        } failuerBlock:^{
+            
+        }];
     }
 }
 
@@ -221,6 +264,12 @@
     [self fadeOut:3];
 }
 
+- (void)pipBtnClick:(UIButton *)sender {
+    if (self.delegate && [self.delegate respondsToSelector:@selector(controlViewPip:)]) {
+        [self.delegate controlViewPip:self];
+    }
+}
+
 - (void)playBtnClick:(UIButton *)sender {
     sender.selected = !sender.selected;
     if (sender.selected) {
@@ -234,7 +283,12 @@
 - (void)fullScreenBtnClick:(UIButton *)sender {
     sender.selected = !sender.selected;
     self.fullScreen = !self.fullScreen;
-    [self.delegate controlViewChangeScreen:self withFullScreen:YES];
+    [self.delegate controlViewChangeScreen:self withFullScreen:self.fullScreen successBlock:^{
+        
+    } failuerBlock:^{
+        sender.selected = !sender.selected;
+        self.fullScreen = !self.fullScreen;
+    }];
     [self fadeOut:3];
 }
 
@@ -248,10 +302,44 @@
     [self fadeOut:3];
 }
 
+- (void)offlineBtnClick:(UIButton *)sender {
+    sender.selected = !sender.selected;
+    [self fadeOut:3];
+}
+
+- (void)trackBtnClick:(UIButton *)sender {
+    self.topImageView.hidden    = YES;
+    self.bottomImageView.hidden = YES;
+    self.lockBtn.hidden         = YES;
+    self.pipBtn.hidden          = YES;
+    self.moreContentView.hidden = YES;
+    self.subtitlesView.hidden   = YES;
+    self.trackView.hidden       = NO;
+    
+    [self cancelFadeOut];
+    self.isShowSecondView = YES;
+}
+
+- (void)subtitlesBtnClick:(UIButton *)sender {
+    self.topImageView.hidden    = YES;
+    self.bottomImageView.hidden = YES;
+    self.lockBtn.hidden         = YES;
+    self.pipBtn.hidden          = YES;
+    self.moreContentView.hidden = YES;
+    self.trackView.hidden       = YES;
+    self.subtitlesView.hidden   = NO;
+    
+    [self cancelFadeOut];
+    self.isShowSecondView = YES;
+}
+
 - (void)moreBtnClick:(UIButton *)sender {
     self.topImageView.hidden    = YES;
     self.bottomImageView.hidden = YES;
     self.lockBtn.hidden         = YES;
+    self.pipBtn.hidden          = YES;
+    self.trackView.hidden       = YES;
+    self.subtitlesView.hidden   = YES;
 
     self.moreContentView.playerConfig = self.playerConfig;
     [self.moreContentView update];
@@ -284,7 +372,8 @@
     self.topImageView.hidden    = YES;
     self.bottomImageView.hidden = YES;
     self.lockBtn.hidden         = YES;
-
+    self.pipBtn.hidden          = YES;
+    
     // 显示隐藏分辨率View
     self.resolutionView.hidden = NO;
     [DataReport report:@"change_resolution" param:nil];
@@ -306,9 +395,19 @@
 }
 
 - (void)progressSliderTouchEnded:(UISlider *)sender {
-    [self.delegate controlViewSeek:self where:sender.value];
+    [self seekTo:sender.value];
+}
+
+- (void)onClickProgress:(UITapGestureRecognizer *)gesture{
+    CGPoint point = [gesture locationInView:self.videoSlider];
+    CGFloat progress = point.x / CGRectGetWidth(self.videoSlider.frame);
+    [self seekTo:progress];
+}
+
+- (void)seekTo:(CGFloat)pos{
+    [self.delegate controlViewSeek:self where:pos];
     self.isDragging = NO;
-    [self fadeOut:5];
+    [self fadeOut:FADEOUTTIME];
 }
 
 - (void)backLiveClick:(UIButton *)sender {
@@ -334,10 +433,24 @@
     }
 }
 
+- (void)setDisableResolutionBtn:(BOOL)disableResolutionBtn {
+    _disableResolutionBtn = disableResolutionBtn;
+    if (self.fullScreen) {
+        self.resolutionBtn.hidden = disableResolutionBtn;
+    }
+}
+
 - (void)setDisableCaptureBtn:(BOOL)disableCaptureBtn {
     _disableCaptureBtn = disableCaptureBtn;
     if (self.fullScreen) {
         self.captureBtn.hidden = disableCaptureBtn;
+    }
+}
+
+- (void)setDisablePipBtn:(BOOL)disablePipBtn {
+    _disablePipBtn = disablePipBtn;
+    if (self.fullScreen) {
+        self.pipBtn.hidden = YES;
     }
 }
 
@@ -348,35 +461,70 @@
     }
 }
 
+- (void)setDisableOfflineBtn:(BOOL)disableOfflineBtn {
+    _disableOfflineBtn = disableOfflineBtn;
+    if (self.fullScreen) {
+        self.offlineBtn.hidden = disableOfflineBtn;
+    }
+}
+
+- (void)setDisableTrackBtn:(BOOL)disableTrackBtn {
+    _disableTrackBtn = disableTrackBtn;
+    if (self.fullScreen) {
+        self.trackBtn.hidden = disableTrackBtn;
+    }
+}
+
+- (void)setDisableSubtitlesBtn:(BOOL)disableSubtitlesBtn {
+    _disableSubtitlesBtn = disableSubtitlesBtn;
+    if (self.fullScreen) {
+        self.subtitlesBtn.hidden = disableSubtitlesBtn;
+    }
+}
+
 - (void)nextJumpClick:(UIButton *)sender {
     if (self.delegate && [self.delegate respondsToSelector:@selector(controlViewNextClick:)]) {
         [self.delegate controlViewNextClick:self];
     }
 }
 /**
- *  屏幕方向发生变化会调用这里
+ *  横屏约束
  */
 - (void)setOrientationLandscapeConstraint {
-    self.fullScreen             = YES;
+    self.fullScreen = YES;
     self.lockBtn.hidden         = NO;
+    self.pipBtn.hidden          = YES;
     self.fullScreenBtn.selected = self.isLockScreen;
     self.fullScreenBtn.hidden   = YES;
-    self.resolutionBtn.hidden   = self.resolutionArray.count == 0;
+    if (self.disableResolutionBtn) {
+        self.resolutionBtn.hidden   = YES;
+    } else {
+        self.resolutionBtn.hidden   = self.resolutionArray.count == 0;
+    }
     self.moreBtn.hidden         = self.disableMoreBtn;
     self.captureBtn.hidden      = self.disableCaptureBtn;
     self.danmakuBtn.hidden      = self.disableDanmakuBtn;
+    self.offlineBtn.hidden      = self.disableOfflineBtn;
+    self.trackBtn.hidden        = self.disableTrackBtn;
+    self.subtitlesBtn.hidden    = self.disableSubtitlesBtn;
+
+    NSArray *buttonStatusArr = @[[NSNumber numberWithBool:self.danmakuBtn.hidden],
+                                 [NSNumber numberWithBool:self.offlineBtn.hidden],
+                                 [NSNumber numberWithBool:self.subtitlesBtn.hidden],
+                                 [NSNumber numberWithBool:self.trackBtn.hidden]];
+    [self setTopButtonConstranintsWithStatus:buttonStatusArr];
 
     [self.backBtn setImage:SuperPlayerImage(@"back_full") forState:UIControlStateNormal];
     
     if (!self.nextBtn.hidden) {
-        [self.nextBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        [self.nextBtn mas_remakeConstraints:^(MASConstraintMaker *make) {
             if (self.resolutionArray.count > 0) {
                 make.trailing.equalTo(self.resolutionBtn.mas_leading);
             } else {
                 make.trailing.equalTo(self.bottomImageView.mas_trailing).offset(-5);
             }
             make.centerY.equalTo(self.startBtn.mas_centerY);
-            make.width.mas_equalTo(self.isLive ? 10 : 60);
+            make.width.height.mas_equalTo(30);
         }];
     }
     
@@ -394,10 +542,6 @@
         make.width.mas_equalTo(self.isLive ? 10 : 60);
     }];
 
-    [self.bottomImageView mas_updateConstraints:^(MASConstraintMaker *make) {
-        CGFloat b = self.superview.mm_safeAreaBottomGap;
-        make.height.mas_equalTo(BOTTOM_IMAGE_VIEW_HEIGHT + b);
-    }];
 
     self.videoSlider.hiddenPoints = NO;
 }
@@ -405,17 +549,27 @@
  *  设置竖屏的约束
  */
 - (void)setOrientationPortraitConstraint {
-    self.fullScreen             = NO;
+    self.fullScreen = NO;
     self.lockBtn.hidden         = YES;
+    self.pipBtn.hidden          = self.disablePipBtn;
     self.fullScreenBtn.selected = NO;
     self.fullScreenBtn.hidden   = NO;
     self.resolutionBtn.hidden   = YES;
     self.moreBtn.hidden         = YES;
     self.captureBtn.hidden      = YES;
     self.danmakuBtn.hidden      = YES;
+    self.offlineBtn.hidden      = YES;
+    self.trackBtn.hidden        = YES;
+    self.subtitlesBtn.hidden    = YES;
     self.moreContentView.hidden = YES;
+    self.trackView.hidden       = YES;
+    self.subtitlesView.hidden   = YES;
     self.resolutionView.hidden  = YES;
-
+    [self.nextBtn mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.trailing.equalTo(self.bottomImageView.mas_trailing).offset(-35);
+        make.centerY.equalTo(self.startBtn.mas_centerY);
+        make.width.height.mas_equalTo(30);
+    }];
     [self.totalTimeLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
         if (!self.nextBtn.hidden) {
             make.trailing.equalTo(self.nextBtn.mas_leading);
@@ -427,15 +581,32 @@
         make.width.mas_equalTo(self.isLive ? 10 : 60);
     }];
 
-    [self.bottomImageView mas_updateConstraints:^(MASConstraintMaker *make) {
-        make.height.mas_equalTo(BOTTOM_IMAGE_VIEW_HEIGHT);
-    }];
 
     self.videoSlider.hiddenPoints = YES;
     self.pointJumpBtn.hidden      = YES;
 }
 
 #pragma mark - Private Method
+
+- (void)setTopButtonConstranintsWithStatus:(NSArray *)buttonStatusArr {
+    NSArray *buttonArray = @[self.danmakuBtn, self.offlineBtn, self.subtitlesBtn, self.trackBtn];
+    
+    int k = 0;
+    for (int i = 0; i < buttonStatusArr.count; i++) {
+        NSNumber *status = buttonStatusArr[i];
+        if (![status boolValue]) {
+            UIButton *btn = buttonArray[i];
+            [btn mas_remakeConstraints:^(MASConstraintMaker *make) {
+                make.width.mas_equalTo(40);
+                make.height.mas_equalTo(49);
+                make.trailing.equalTo(self.captureBtn.mas_leading).offset(-((k * 40) + ((k + 1) * 10)));
+                make.centerY.equalTo(self.backBtn.mas_centerY);
+            }];
+            k++;
+        }
+    }
+    
+}
 
 #pragma mark - setter
 
@@ -486,6 +657,15 @@
     return _lockBtn;
 }
 
+- (UIButton *)pipBtn {
+    if (!_pipBtn) {
+        _pipBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        [_pipBtn setImage:SuperPlayerImage(@"pip_play_icon") forState:UIControlStateNormal];
+        [_pipBtn addTarget:self action:@selector(pipBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _pipBtn;
+}
+
 - (UIButton *)startBtn {
     if (!_startBtn) {
         _startBtn = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -517,6 +697,9 @@
         [_videoSlider addTarget:self action:@selector(progressSliderValueChanged:) forControlEvents:UIControlEventValueChanged];
         // slider结束滑动事件
         [_videoSlider addTarget:self action:@selector(progressSliderTouchEnded:) forControlEvents:UIControlEventTouchUpInside | UIControlEventTouchUpOutside];
+        // slider点击seek事件
+        UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onClickProgress:)];
+        [_videoSlider addGestureRecognizer:tapGesture];
         _videoSlider.delegate = self;
     }
     return _videoSlider;
@@ -536,6 +719,7 @@
     if (!_fullScreenBtn) {
         _fullScreenBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         [_fullScreenBtn setImage:SuperPlayerImage(@"fullscreen") forState:UIControlStateNormal];
+        [_fullScreenBtn setImage:SuperPlayerImage(@"fullscreen") forState:UIControlStateSelected];
         [_fullScreenBtn addTarget:self action:@selector(fullScreenBtnClick:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _fullScreenBtn;
@@ -561,6 +745,33 @@
     return _danmakuBtn;
 }
 
+- (UIButton *)offlineBtn {
+    if (!_offlineBtn) {
+        _offlineBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        [_offlineBtn setImage:SuperPlayerImage(@"offline_download") forState:UIControlStateNormal];
+        [_offlineBtn addTarget:self action:@selector(offlineBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _offlineBtn;
+}
+
+- (UIButton *)trackBtn {
+    if (!_trackBtn) {
+        _trackBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        [_trackBtn setImage:SuperPlayerImage(@"track") forState:UIControlStateNormal];
+        [_trackBtn addTarget:self action:@selector(trackBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _trackBtn;
+}
+
+- (UIButton *)subtitlesBtn {
+    if (!_subtitlesBtn) {
+        _subtitlesBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        [_subtitlesBtn setImage:SuperPlayerImage(@"subtitles") forState:UIControlStateNormal];
+        [_subtitlesBtn addTarget:self action:@selector(subtitlesBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _subtitlesBtn;
+}
+
 - (UIButton *)moreBtn {
     if (!_moreBtn) {
         _moreBtn = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -584,7 +795,7 @@
 - (UIButton *)backLiveBtn {
     if (!_backLiveBtn) {
         _backLiveBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_backLiveBtn setTitle:@"返回直播" forState:UIControlStateNormal];
+        [_backLiveBtn setTitle:superPlayerLocalized(@"SuperPlayer.backtolive") forState:UIControlStateNormal];
         _backLiveBtn.titleLabel.font = [UIFont systemFontOfSize:14];
         UIImage *image               = SuperPlayerImage(@"qg_online_bg");
 
@@ -626,6 +837,40 @@
     return _moreContentView;
 }
 
+- (SuperPlayerTrackView *)trackView {
+    if (!_trackView) {
+        _trackView = [[SuperPlayerTrackView alloc] initWithFrame:CGRectZero];
+        _trackView.hidden = YES;
+        [self addSubview:_trackView];
+        [_trackView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.width.mas_equalTo(330);
+            make.height.mas_equalTo(self.mas_height);
+            make.trailing.equalTo(self.mas_trailing).offset(0);
+            make.top.equalTo(self.mas_top).offset(0);
+        }];
+        _trackView.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.5];
+        _trackView.delegate = self;
+    }
+    return _trackView;
+}
+
+- (SuperPlayerSubtitlesView *)subtitlesView {
+    if (!_subtitlesView) {
+        _subtitlesView = [[SuperPlayerSubtitlesView alloc] initWithFrame:CGRectZero];
+        _subtitlesView.hidden = YES;
+        [self addSubview:_subtitlesView];
+        [_subtitlesView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.width.mas_equalTo(330);
+            make.height.mas_equalTo(self.mas_height);
+            make.trailing.equalTo(self.mas_trailing).offset(0);
+            make.top.equalTo(self.mas_top).offset(0);
+        }];
+        _subtitlesView.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.5];
+        _subtitlesView.delegate = self;
+    }
+    return _subtitlesView;
+}
+
 - (UIButton *)nextBtn {
     if (!_nextBtn) {
         _nextBtn = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -645,6 +890,28 @@
     return YES;
 }
 
+#pragma mark - SuperPlayerTrackViewDelegate
+
+- (void)chooseTrackInfo:(TXTrackInfo *)info preTrackInfo:(TXTrackInfo *)preInfo {
+    if (self.delegate && [self.delegate respondsToSelector:@selector(controlViewSwitch:withTrackInfo:preTrackInfo:)]) {
+        [self.delegate controlViewSwitch:self withTrackInfo:info preTrackInfo:preInfo];
+    }
+}
+
+#pragma mark - SuperPlayerSubtitlesViewDelegate
+
+- (void)chooseSubtitlesInfo:(TXTrackInfo *)info preSubtitlesInfo:(TXTrackInfo *)preInfo {
+    if (self.delegate && [self.delegate respondsToSelector:@selector(controlViewSwitch:withSubtitlesInfo:preSubtitlesInfo:)]) {
+        [self.delegate controlViewSwitch:self withSubtitlesInfo:info preSubtitlesInfo:preInfo];
+    }
+}
+
+- (void)onSettingViewDoneClickWithDic:(NSMutableDictionary *)dic{
+    if (self.delegate && [self.delegate respondsToSelector:@selector(onSettingViewDoneClickWithDic:)]) {
+        [self.delegate onSettingViewDoneClickWithDic:dic];
+    }
+}
+
 #pragma mark - Public method
 
 - (void)setHidden:(BOOL)hidden {
@@ -652,6 +919,8 @@
     if (hidden) {
         self.resolutionView.hidden  = YES;
         self.moreContentView.hidden = YES;
+        self.trackView.hidden       = YES;
+        self.subtitlesView.hidden   = YES;
         if (!self.isLockScreen) {
             self.topImageView.hidden    = NO;
             self.bottomImageView.hidden = NO;
@@ -659,6 +928,12 @@
     }
 
     self.lockBtn.hidden      = !self.isFullScreen;
+    if (self.disablePipBtn) {
+        self.pipBtn.hidden = YES;
+    } else {
+        self.pipBtn.hidden       = self.isFullScreen;
+    }
+    
     self.isShowSecondView    = NO;
     self.pointJumpBtn.hidden = YES;
 }
@@ -674,8 +949,16 @@
     self.backgroundColor                   = [UIColor clearColor];
     self.moreBtn.enabled                   = !self.disableMoreBtn;
     self.lockBtn.hidden                    = !self.isFullScreen;
-
+    if (self.disablePipBtn) {
+        self.pipBtn.hidden = YES;
+    } else {
+        self.pipBtn.hidden                     = self.isFullScreen;
+    }
+    
     self.danmakuBtn.enabled = YES;
+    self.offlineBtn.enabled = YES;
+    self.trackBtn.enabled   = YES;
+    self.subtitlesBtn.enabled = YES;
     self.captureBtn.enabled = YES;
     self.backLiveBtn.hidden = YES;
 }
@@ -728,7 +1011,11 @@
                   isTimeShifting:(BOOL)isTimeShifting
                        isPlaying:(BOOL)isPlaying {
     NSAssert(resolutionNames.count == 0 || currentResolutionIndex < resolutionNames.count, @"Invalid argument when reseeting %@", NSStringFromClass(self.class));
-
+    
+    if (self.disableResolutionBtn) {
+        return;
+    }
+    
     [self setPlayState:isPlaying];
     self.backLiveBtn.hidden                          = !isTimeShifting;
     self.moreContentView.enableSpeedAndMirrorControl = !isLive;
@@ -737,10 +1024,14 @@
 
     _resolutionArray = resolutionNames;
     if (_resolutionArray.count > 0) {
-        [self.resolutionBtn setTitle:resolutionNames[currentResolutionIndex] forState:UIControlStateNormal];
+        NSArray *titlesArray = [resolutionNames[currentResolutionIndex] componentsSeparatedByString:@"（"];
+        NSArray *resoluArray = [titlesArray.lastObject componentsSeparatedByString:@"）"];
+        NSString *title = titlesArray.firstObject;
+        [self.resolutionBtn setTitle:title.length > 0 ? title : resoluArray.firstObject forState:UIControlStateNormal];
+
     }
     UILabel *lable      = [UILabel new];
-    lable.text          = @"清晰度";
+    lable.text          = superPlayerLocalized(@"SuperPlayer.videoquality");
     lable.textAlignment = NSTextAlignmentCenter;
     lable.textColor     = [UIColor whiteColor];
     [self.resolutionView addSubview:lable];
@@ -780,6 +1071,24 @@
     self.resolutionBtn.userInteractionEnabled = !isTimeShifting;
 }
 
+- (void)resetWithTracks:(NSMutableArray *)tracks
+      currentTrackIndex:(NSInteger)trackIndex
+              subtitles:(NSMutableArray *)subtitles
+  currentSubtitlesIndex:(NSInteger)subtitleIndex {
+    [self.trackView removeFromSuperview];
+    self.trackView = nil;
+    
+    [self.subtitlesView removeFromSuperview];
+    self.subtitlesView = nil;
+    [self.trackView initTrackViewWithTrackArray:tracks currentTrackIndex:trackIndex];
+    
+    if (subtitles.count <= 0) {
+        return;
+    }
+    
+    [self.subtitlesView initSubtitlesViewWithTrackArray:subtitles currentSubtitlesIndex:subtitleIndex];
+}
+
 /** 播放按钮状态 */
 - (void)setPlayState:(BOOL)state {
     self.startBtn.selected = state;
@@ -808,6 +1117,24 @@
 
 - (void)setNextBtnState:(BOOL)isShow {
     self.nextBtn.hidden = !isShow;
+}
+
+- (void)setTrackBtnState:(BOOL)isShow {
+    self.trackBtn.hidden = !isShow;
+    self.disableTrackBtn = !isShow;
+}
+
+- (void)setSubtitlesBtnState:(BOOL)isShow {
+    self.subtitlesBtn.hidden = !isShow;
+    self.disableSubtitlesBtn = !isShow;
+}
+
+- (void)setOfflineBtnState:(BOOL)isShow {
+    self.disableOfflineBtn = !isShow;
+}
+
+- (void)fullScreenButtonSelectState:(BOOL)state{
+    self.fullScreenBtn.selected = state;
 }
 
 #pragma clang diagnostic pop

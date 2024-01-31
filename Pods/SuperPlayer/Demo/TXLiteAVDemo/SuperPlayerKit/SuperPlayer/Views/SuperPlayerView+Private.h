@@ -10,12 +10,10 @@
 #define SuperPlayerView_Private_h
 #import <MediaPlayer/MediaPlayer.h>
 
-#import "AFNetworking/AFNetworking.h"
-#import "Masonry/Masonry.h"
+#import <Masonry/Masonry.h>
 #import "NetWatcher.h"
 #import "SuperPlayer.h"
 #import "SuperPlayerControlViewDelegate.h"
-//#import "SPResolutionDefination.h"
 #import <AVFoundation/AVFoundation.h>
 
 #import "SPSubStreamInfo.h"
@@ -53,6 +51,8 @@ typedef NS_ENUM(NSInteger, ButtonAction) {
 @property(nonatomic, assign) BOOL didEnterBackground;
 /** 单击 */
 @property(nonatomic, strong) UITapGestureRecognizer *singleTap;
+/** 长按 */
+@property(nonatomic, strong) UILongPressGestureRecognizer *longPress;
 /** 双击 */
 @property(nonatomic, strong) UITapGestureRecognizer *doubleTap;
 /** 快进快退、View*/
@@ -72,7 +72,7 @@ typedef NS_ENUM(NSInteger, ButtonAction) {
 
 @property(class, readonly) UISlider *volumeViewSlider;
 
-@property MPVolumeView *volumeView;
+@property (nonatomic, strong) MPVolumeView *volumeView;
 
 // add for txvodplayer
 @property BOOL isLoaded;
@@ -93,7 +93,7 @@ typedef NS_ENUM(NSInteger, ButtonAction) {
 
 @property NSDate *reportTime;
 
-@property NetWatcher *netWatcher;
+@property (nonatomic, strong) NetWatcher *netWatcher;
 
 @property(nonatomic) CGFloat videoRatio;
 

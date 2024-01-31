@@ -21,8 +21,8 @@
 
 #define IsIPhoneX (ScreenHeight >= 812 || ScreenWidth >= 812)
 
-// 小窗单例
-#define SuperPlayerWindowShared [SuperPlayerWindow sharedInstance]
+
+
 
 #define TintColor RGBA(252, 89, 81, 1)
 
@@ -33,6 +33,13 @@
 
 #define IS_IPHONE (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
 #define IS_IPHONEX SCREEN_WIDTH >=375.0f && SCREEN_HEIGHT >=812.0f&& IS_IPHONE
+
+#define HomeIndicator_Height ((IS_IPHONEX) ? 34 : 0)
+
+/*状态栏高度*/
+#define kStatusBarHeight (CGFloat)(IS_IPHONEX ? (44.0):(20.0))
+/*导航栏高度*/
+#define kNavBarHeight (44)
 
 #define VIP_TIPVIEW_DEFAULT_HEIGHT  20
 #define VIP_TIPVIEW_DEFAULT_LEFT    10
@@ -60,7 +67,7 @@
 #define VIP_WATCHVIEW_REPEARTBTN_WIDTH 120
 #define VIP_WATCHVIEW_REPEARTBTN_HEIGHT 28
 
-#define VIP_VIDEO_DEFAULT_TIP_TITLE @"可试看15秒，开通VIP观看完整视频"
+#define VIP_VIDEO_DEFAULT_TIP_TITLE superPlayerLocalized(@"SuperPlayer.trywactchtitle")
 
 #define DYNAMIC_WATERMARK_DEGREE_360 360
 #define DYNAMIC_WATERMARK_DEGREE_270 270
@@ -72,5 +79,29 @@
 #define DYNAMIC_WATERMARK_BORDER_TOP 1
 #define DYNAMIC_WATERMARK_BORDER_RIGHT 2
 #define DYNAMIC_WATERMARK_BORDER_BOTTOM  3
+
+#define DEFAULT_VIDEO_RESOLUTION_FLU superPlayerLocalized(@"SuperPlayer.smooth")
+#define DEFAULT_VIDEO_RESOLUTION_SD  superPlayerLocalized(@"SuperPlayer.SD")
+#define DEFAULT_VIDEO_RESOLUTION_FSD superPlayerLocalized(@"SuperPlayer.FSD")
+#define DEFAULT_VIDEO_RESOLUTION_HD  superPlayerLocalized(@"SuperPlayer.HD")
+#define DEFAULT_VIDEO_RESOLUTION_FHD superPlayerLocalized(@"SuperPlayer.FHD")
+#define DEFAULT_VIDEO_RESOLUTION_2K  superPlayerLocalized(@"SuperPlayer.2K")
+#define DEFAULT_VIDEO_RESOLUTION_4K  superPlayerLocalized(@"SuperPlayer.4K")
+
+#define DEVICE_VERSION (CGFloat) [[UIDevice currentDevice].systemVersion floatValue]
+#define IS_MORE_THAN_15 (DEVICE_VERSION >= 15.0 ? YES : NO)
+
+#define VOLUME_NOTIFICATION_NAME @"SystemVolumeDidChange"
+#define VOLUME_CHANGE_PARAMATER  (IS_MORE_THAN_15 ? @"Reason" : @"AudioVolumeChangeReason")
+#define VOLUME_CHANGE_KEY        (IS_MORE_THAN_15 ? @"Volume" : @"AudioVolume")
+#define VOLUME_EXPLICIT_CHANGE   @"ExplicitVolumeChange"
+
+#define PIP_START_LOADING_TEXT superPlayerLocalized(@"SuperPlayer.piploading")
+#define PIP_ERROR_LOADING_TEXT superPlayerLocalized(@"SuperPlayer.pipfailed")
+#define DEFAULT_PIP_LOADING_WIDTH_MARGIN 20
+#define DEFAULT_PIP_LOADING_HEIGHT 50
+#define DEFAULT_PIP_LOADING_LABEL_MARGIN 10
+#define DEFAULT_PIP_LOADING_LABEL_HEIGHT 40
+#define DEFAULT_PIP_LOADING_FONT_SIZE 14
 
 #endif /* SuperPlayerHelpers_h */

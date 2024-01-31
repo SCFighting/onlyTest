@@ -8,6 +8,7 @@
 
 #import "TXVipWatchView.h"
 #import "SuperPlayerHelpers.h"
+#import "SuperPlayerLocalized.h"
 #import <Masonry/Masonry.h>
 
 @interface TXVipWatchView()
@@ -27,6 +28,7 @@
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
         self.backgroundColor = [UIColor blackColor];
+        self.userInteractionEnabled = YES;
     }
     return self;
 }
@@ -35,13 +37,18 @@
 - (void)initVipWatchSubViews {
     
     [self addSubview:self.backBtn];
+    [self addSubview:self.openVipBtn];
+    [self addSubview:self.watchEndLabel];
+    [self addSubview:self.repeatBtn];
+    
     [self.backBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self).offset(VIP_WATCHVIEW_BACKBTN_LEFT);
         make.top.equalTo(self).offset(VIP_WATCHVIEW_BACKBTN_TOP);
-        make.size.mas_equalTo(CGSizeMake(VIP_WATCHVIEW_BACKBTN_WIDTH * self.scale, VIP_WATCHVIEW_BACKBTN_WIDTH * self.scale));
+        //make.size.mas_equalTo(CGSizeMake(VIP_WATCHVIEW_BACKBTN_WIDTH * self.scale, VIP_WATCHVIEW_BACKBTN_WIDTH * self.scale));
+        make.width.equalTo(@(30));
+        make.height.equalTo(@(30));
     }];
     
-    [self addSubview:self.openVipBtn];
     [self.openVipBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.center.equalTo(self);
         make.width.mas_equalTo(VIP_WATCHVIEW_OPENVIPBTN_WIDTH * self.scale);
@@ -51,7 +58,6 @@
     _openVipBtn.layer.cornerRadius = VIP_WATCHVIEW_OPENVIPBTN_HEIGHT * 0.5 * self.scale;
     _openVipBtn.layer.masksToBounds = YES;
     
-    [self addSubview:self.watchEndLabel];
     [self.watchEndLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(self);
         make.width.equalTo(self);
@@ -60,7 +66,6 @@
     }];
     self.watchEndLabel.font = self.textFontSize > 0 ? [UIFont systemFontOfSize:self.textFontSize] : self.watchEndLabel.font;
     
-    [self addSubview:self.repeatBtn];
     [self.repeatBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(self);
         make.height.mas_equalTo(VIP_WATCHVIEW_REPEARTBTN_HEIGHT * self.scale);
@@ -125,8 +130,8 @@
 - (UILabel *)watchEndLabel {
     if (!_watchEndLabel) {
         _watchEndLabel = [UILabel new];
-        _watchEndLabel.text = @"试看结束，VIP会员可观看完整视频";
-        _watchEndLabel.font = [UIFont systemFontOfSize:16];
+        _watchEndLabel.text = superPlayerLocalized(@"SuperPlayer.trywactchend");
+        _watchEndLabel.font = [UIFont systemFontOfSize:15];
         _watchEndLabel.textColor = [UIColor colorWithRed:255/255.0 green:255/255.0 blue:255/255.0 alpha:1.0];
         _watchEndLabel.textAlignment = NSTextAlignmentCenter;
     }
@@ -137,7 +142,7 @@
     if (!_openVipBtn) {
         _openVipBtn = [UIButton new];
         _openVipBtn.backgroundColor = [UIColor colorWithRed:243.0/255.0 green:209.0/255.0 blue:101.0/255.0 alpha:1.0];
-        [_openVipBtn setTitle:@"开通VIP会员" forState:UIControlStateNormal];
+        [_openVipBtn setTitle:superPlayerLocalized(@"SuperPlayer.openvip") forState:UIControlStateNormal];
         [_openVipBtn.titleLabel setFont:[UIFont systemFontOfSize:18]];
         _openVipBtn.titleLabel.textAlignment = NSTextAlignmentCenter;
         [_openVipBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
@@ -151,7 +156,7 @@
 - (UIButton *)repeatBtn {
     if (!_repeatBtn) {
         _repeatBtn = [UIButton new];
-        [_repeatBtn setTitle:@"重新试看" forState:UIControlStateNormal];
+        [_repeatBtn setTitle:superPlayerLocalized(@"SuperPlayer.tryagain") forState:UIControlStateNormal];
         [_repeatBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [_repeatBtn.titleLabel setFont:[UIFont systemFontOfSize:14]];
         _repeatBtn.titleLabel.textAlignment = NSTextAlignmentCenter;

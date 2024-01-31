@@ -15,9 +15,10 @@
 - (instancetype)init {
     self                 = [super init];
     self.hwAcceleration  = 1;
+    self.pipAutomatic = NO;
     self.playRate        = 1;
     self.renderMode      = RENDER_MODE_FILL_EDGE;
-    self.maxCacheItem    = 5;
+    self.maxCacheSizeMB  = 500;
     self.playShiftDomain = @"playtimeshift.live.myqcloud.com";
     self.enableLog       = YES;
     return self;

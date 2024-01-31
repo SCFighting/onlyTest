@@ -16,6 +16,7 @@
 #import "SuperPlayerControlView.h"
 #import "SuperPlayerView+Private.h"
 #import "UIView+MMLayout.h"
+#import "SuperPlayerLocalized.h"
 
 #define TAG_1_SPEED 1001
 #define TAG_2_SPEED 1002
@@ -28,6 +29,8 @@
 @property(nonatomic) UIView *speedCell;
 @property(nonatomic) UIView *mirrorCell;
 @property(nonatomic) UIView *hwCell;
+@property (nonatomic, strong) UIView *pipCell;
+@property (nonatomic, strong) UISwitch *pipSwitch;
 @property BOOL               isVolume;
 @property NSDate *volumeEndTime;
 @end
@@ -51,8 +54,9 @@
     [self addSubview:[self speedCell]];
     [self addSubview:[self mirrorCell]];
     [self addSubview:[self hwCell]];
+    [self addSubview:[self pipCell]];
 
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(volumeChanged:) name:@"AVSystemController_SystemVolumeDidChangeNotification" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(volumeSettingChanged:) name:VOLUME_NOTIFICATION_NAME object:nil];
 
     return self;
 }
@@ -61,11 +65,13 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
-- (void)volumeChanged:(NSNotification *)notify {
+- (void)volumeSettingChanged:(NSNotification *)notify {
     if (!self.isVolume) {
         if (self.volumeEndTime != nil && -[self.volumeEndTime timeIntervalSinceNow] < 2.f) return;
-        float volume           = [[[notify userInfo] objectForKey:@"AVSystemController_AudioVolumeNotificationParameter"] floatValue];
-        self.soundSlider.value = volume;
+        float volume           = [[[notify userInfo] objectForKey:VOLUME_CHANGE_KEY] floatValue];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            self.soundSlider.value = volume;
+        });
     }
 }
 
@@ -94,6 +100,9 @@
 
     _hwCell.m_top(_contentHeight);
     _contentHeight += _hwCell.mm_h;
+    
+    _pipCell.m_top(_contentHeight);
+    _contentHeight += _pipCell.mm_h;
 }
 
 - (UIView *)soundCell {
@@ -103,7 +112,7 @@
 
         // 声音
         UILabel *sound  = [UILabel new];
-        sound.text      = @"声音";
+        sound.text      = superPlayerLocalized(@"SuperPlayer.volume");
         sound.textColor = [UIColor whiteColor];
         [sound sizeToFit];
         [_soundCell addSubview:sound];
@@ -145,7 +154,7 @@
 
         // 亮度
         UILabel *ligth  = [UILabel new];
-        ligth.text      = @"亮度";
+        ligth.text      = superPlayerLocalized(@"SuperPlayer.brightness");
         ligth.textColor = [UIColor whiteColor];
         [ligth sizeToFit];
         [_ligthCell addSubview:ligth];
@@ -190,14 +199,14 @@
 
         // 倍速
         UILabel *speed  = [UILabel new];
-        speed.text      = @"倍速播放";
+        speed.text      = superPlayerLocalized(@"SuperPlayer.speed");
         speed.textColor = [UIColor whiteColor];
         [speed sizeToFit];
         [_speedCell addSubview:speed];
         speed.m_centerY();
 
         UIButton *speed1 = [UIButton buttonWithType:UIButtonTypeCustom];
-        [speed1 setTitle:@"1.0X" forState:UIControlStateNormal];
+        [speed1 setTitle:superPlayerLocalized(@"SuperPlayer.speed1p0") forState:UIControlStateNormal];
         [speed1 setTitleColor:TintColor forState:UIControlStateSelected];
         speed1.selected = YES;
         speed1.tag      = TAG_1_SPEED;
@@ -208,7 +217,7 @@
         speed1.m_left(speed.mm_maxX + 10).m_centerY();
 
         UIButton *speed2 = [UIButton buttonWithType:UIButtonTypeCustom];
-        [speed2 setTitle:@"1.25X" forState:UIControlStateNormal];
+        [speed2 setTitle:superPlayerLocalized(@"SuperPlayer.speed1p25") forState:UIControlStateNormal];
         [speed2 setTitleColor:TintColor forState:UIControlStateSelected];
         speed2.tag = TAG_2_SPEED;
         [speed2 sizeToFit];
@@ -218,7 +227,7 @@
         speed2.m_left(speed1.mm_maxX + 12).m_centerY();
 
         UIButton *speed3 = [UIButton buttonWithType:UIButtonTypeCustom];
-        [speed3 setTitle:@"1.5X" forState:UIControlStateNormal];
+        [speed3 setTitle:superPlayerLocalized(@"SuperPlayer.speed1p5") forState:UIControlStateNormal];
         [speed3 setTitleColor:TintColor forState:UIControlStateSelected];
         speed3.tag = TAG_3_SPEED;
         [speed3 sizeToFit];
@@ -228,7 +237,7 @@
         speed3.m_left(speed2.mm_maxX + 12).m_centerY();
 
         UIButton *speed4 = [UIButton buttonWithType:UIButtonTypeCustom];
-        [speed4 setTitle:@"2.0X" forState:UIControlStateNormal];
+        [speed4 setTitle:superPlayerLocalized(@"SuperPlayer.speed2p0") forState:UIControlStateNormal];
         [speed4 setTitleColor:TintColor forState:UIControlStateSelected];
         speed4.tag = TAG_4_SPEED;
         [speed4 sizeToFit];
@@ -245,7 +254,7 @@
         _mirrorCell.m_width(MoreViewWidth).m_height(50).m_left(10);
 
         UILabel *mirror  = [UILabel new];
-        mirror.text      = @"镜像";
+        mirror.text      = superPlayerLocalized(@"SuperPlayer.mirror");
         mirror.textColor = [UIColor whiteColor];
         [mirror sizeToFit];
         [_mirrorCell addSubview:mirror];
@@ -266,7 +275,7 @@
         _hwCell.m_width(MoreViewWidth).m_height(50).m_left(10);
 
         UILabel *hd = [UILabel new];
-        hd.text     = @"硬件加速";
+        hd.text     = superPlayerLocalized(@"SuperPlayer.handware");
 
         hd.textColor = [UIColor whiteColor];
         [hd sizeToFit];
@@ -282,6 +291,27 @@
     return _hwCell;
 }
 
+- (UIView *)pipCell {
+    if (!_pipCell) {
+        _pipCell = [UIView new];
+        _pipCell.m_width(MoreViewWidth).m_height(50).m_left(10);
+        
+        UILabel *hd = [UILabel new];
+        hd.text     = superPlayerLocalized(@"SuperPlayer.pipAutomatic");
+        
+        hd.textColor = [UIColor whiteColor];
+        [hd sizeToFit];
+        [_pipCell addSubview:hd];
+        hd.m_centerY();
+        
+        UISwitch *switcher = [UISwitch new];
+        _pipSwitch          = switcher;
+        [switcher addTarget:self action:@selector(changePip:) forControlEvents:UIControlEventValueChanged];
+        [_pipCell addSubview:switcher];
+        switcher.m_right(30).m_centerY();
+    }
+    return _pipCell;
+}
 - (void)soundSliderTouchBegan:(UISlider *)sender {
     self.isVolume = YES;
 }
@@ -330,6 +360,11 @@
     [DataReport report:sender.on ? @"hw_decode" : @"soft_decode" param:nil];
 }
 
+- (void)changePip:(UISwitch *)sender {
+    self.playerConfig.pipAutomatic = sender.on;
+    [self.controlView.delegate controlViewConfigUpdate:self.controlView withReload:YES];
+   // [DataReport report:sender.on ? @"pipAutomatic_on" : @"pipAutomatic_off" param:nil];
+}
 - (void)update {
     self.soundSlider.value = [SuperPlayerView volumeViewSlider].value;
     self.lightSlider.value = [UIScreen mainScreen].brightness;

@@ -14,6 +14,7 @@
 #import "SuperPlayer.h"
 #import "UIView+Fade.h"
 #import "UIView+MMLayout.h"
+#import "SuperPlayerLocalized.h"
 
 @interface     SPWeiboControlView () <PlayerSliderDelegate>
 @property BOOL isLive;
@@ -227,7 +228,11 @@
 
 - (void)fullScreenBtnClick:(UIButton *)sender {
     sender.selected = !sender.selected;
-    [self.delegate controlViewChangeScreen:self withFullScreen:sender.selected];
+    [self.delegate controlViewChangeScreen:self withFullScreen:sender.selected successBlock:^{
+        
+    } failuerBlock:^{
+        sender.selected = !sender.selected;
+    }];
 }
 
 - (void)progressSliderTouchBegan:(UISlider *)sender {
@@ -337,12 +342,16 @@
     _resolutionArray = resolutionNames;
     NSAssert(currentResolutionIndex < resolutionNames.count, @"Invalid argument when reseeting %@", NSStringFromClass(self.class));
     if (resolutionNames.count > 0) {
-        [self.resolutionBtn setTitle:resolutionNames[currentResolutionIndex] forState:UIControlStateNormal];
+        NSArray *titlesArray = [resolutionNames[currentResolutionIndex] componentsSeparatedByString:@"（"];
+        NSArray *resoluArray = [titlesArray.lastObject componentsSeparatedByString:@"）"];
+        NSString *title = titlesArray.firstObject;
+        [self.resolutionBtn setTitle:title.length > 0 ? title : resoluArray.firstObject forState:UIControlStateNormal];
+
     }
     for (UIView *subview in self.resolutionView.subviews) [subview removeFromSuperview];
 
     UILabel *lable      = [UILabel new];
-    lable.text          = @"清晰度";
+    lable.text          = superPlayerLocalized(@"SuperPlayer.videoquality");
     lable.textAlignment = NSTextAlignmentCenter;
     lable.textColor     = [UIColor whiteColor];
     [self.resolutionView addSubview:lable];
@@ -392,8 +401,13 @@
     self.resoultionCurrentBtn.backgroundColor = RGBA(34, 30, 24, 1);
 
     // topImageView上的按钮的文字
-    [self.resolutionBtn setTitle:sender.titleLabel.text forState:UIControlStateNormal];
-    [self.delegate controlViewSwitch:self withDefinition:sender.titleLabel.text];
+    NSString *titleString = sender.titleLabel.text;
+    NSArray *titlesArray = [titleString componentsSeparatedByString:@"（"];
+    NSArray *resoluArray = [titlesArray.lastObject componentsSeparatedByString:@"）"];
+    NSString *title = titlesArray.firstObject;
+    [self.resolutionBtn setTitle:title.length > 0 ? title : resoluArray.firstObject forState:UIControlStateNormal];
+    [self.delegate controlViewSwitch:self withDefinition:titleString];
+
 }
 
 - (void)setOrientationLandscapeConstraint {
