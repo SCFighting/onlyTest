@@ -18,7 +18,7 @@ target 'onlyTest' do
   pod 'CHTCollectionViewWaterfallLayout'
   pod 'TZImagePickerController'
   pod 'AFNetworking', '~> 4.0.1'
-  pod 'TXLiteAVSDK_Professional', '~>11.4'
+  pod 'TXLiteAVSDK_Professional', '=11.3.14333'
   pod 'SuperPlayer/Professional', '=3.7.5'
   pod 'TXIMSDK_Plus_iOS'
   pod 'BlocksKit'

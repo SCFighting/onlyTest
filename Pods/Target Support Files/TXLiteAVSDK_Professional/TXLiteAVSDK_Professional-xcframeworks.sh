@@ -17,22 +17,16 @@ RSYNC_PROTECT_TMP_FILES=(--filter "P .*.??????")
 variant_for_slice()
 {
   case "$1" in
-  "TXLiteAVSDK_Professional.xcframework/ios-arm64_armv7")
-    echo ""
-    ;;
-  "TXLiteAVSDK_Professional.xcframework/ios-arm64_x86_64-simulator")
-    echo "simulator"
-    ;;
   "TXSoundTouch.xcframework/ios-arm64_armv7")
     echo ""
     ;;
-  "TXSoundTouch.xcframework/ios-arm64_x86_64-simulator")
+  "TXSoundTouch.xcframework/ios-x86_64-simulator")
     echo "simulator"
     ;;
   "TXFFmpeg.xcframework/ios-arm64_armv7")
     echo ""
     ;;
-  "TXFFmpeg.xcframework/ios-arm64_x86_64-simulator")
+  "TXFFmpeg.xcframework/ios-x86_64-simulator")
     echo "simulator"
     ;;
   esac
@@ -41,23 +35,17 @@ variant_for_slice()
 archs_for_slice()
 {
   case "$1" in
-  "TXLiteAVSDK_Professional.xcframework/ios-arm64_armv7")
-    echo "arm64 armv7"
-    ;;
-  "TXLiteAVSDK_Professional.xcframework/ios-arm64_x86_64-simulator")
-    echo "arm64 x86_64"
-    ;;
   "TXSoundTouch.xcframework/ios-arm64_armv7")
     echo "arm64 armv7"
     ;;
-  "TXSoundTouch.xcframework/ios-arm64_x86_64-simulator")
-    echo "arm64 x86_64"
+  "TXSoundTouch.xcframework/ios-x86_64-simulator")
+    echo "x86_64"
     ;;
   "TXFFmpeg.xcframework/ios-arm64_armv7")
     echo "arm64 armv7"
     ;;
-  "TXFFmpeg.xcframework/ios-arm64_x86_64-simulator")
-    echo "arm64 x86_64"
+  "TXFFmpeg.xcframework/ios-x86_64-simulator")
+    echo "x86_64"
     ;;
   esac
 }
@@ -141,7 +129,6 @@ install_xcframework() {
   echo "Copied $source to $destination"
 }
 
-install_xcframework "${PODS_ROOT}/TXLiteAVSDK_Professional/TXLiteAVSDK_Professional/TXLiteAVSDK_Professional.xcframework" "TXLiteAVSDK_Professional/Professional" "framework" "ios-arm64_armv7" "ios-arm64_x86_64-simulator"
-install_xcframework "${PODS_ROOT}/TXLiteAVSDK_Professional/TXLiteAVSDK_Professional/TXSoundTouch.xcframework" "TXLiteAVSDK_Professional/Professional" "framework" "ios-arm64_armv7" "ios-arm64_x86_64-simulator"
-install_xcframework "${PODS_ROOT}/TXLiteAVSDK_Professional/TXLiteAVSDK_Professional/TXFFmpeg.xcframework" "TXLiteAVSDK_Professional/Professional" "framework" "ios-arm64_armv7" "ios-arm64_x86_64-simulator"
+install_xcframework "${PODS_ROOT}/TXLiteAVSDK_Professional/TXLiteAVSDK_Professional/TXSoundTouch.xcframework" "TXLiteAVSDK_Professional/Professional" "framework" "ios-arm64_armv7" "ios-x86_64-simulator"
+install_xcframework "${PODS_ROOT}/TXLiteAVSDK_Professional/TXLiteAVSDK_Professional/TXFFmpeg.xcframework" "TXLiteAVSDK_Professional/Professional" "framework" "ios-arm64_armv7" "ios-x86_64-simulator"
 
