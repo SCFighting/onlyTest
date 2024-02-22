@@ -663,7 +663,7 @@ TXLiveBaseDelegate,TXLivePlayListener,TXVodPlayListener>
 
 - (void)setVodPlayConfig {
     TXVodPlayConfig *config    = [[TXVodPlayConfig alloc] init];
-    config.playerType = PLAYER_AVPLAYER;
+    config.playerType = PLAYER_THUMB_PLAYER;
     config.smoothSwitchBitrate = YES;
     config.progressInterval = 0.02;
     config.headers = self.playerConfig.headers;

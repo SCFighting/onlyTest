@@ -640,7 +640,7 @@
 					"\"libwebp\"",
 					"-ld64",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.rayclear.onlyTest;
+				PRODUCT_BUNDLE_IDENTIFIER = com.rayclear.yszb;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -746,7 +746,7 @@
 					"\"libwebp\"",
 					"-ld64",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.rayclear.onlyTest;
+				PRODUCT_BUNDLE_IDENTIFIER = com.rayclear.yszb;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
