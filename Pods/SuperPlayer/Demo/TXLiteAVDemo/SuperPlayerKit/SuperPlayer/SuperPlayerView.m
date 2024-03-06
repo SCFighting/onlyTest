@@ -194,7 +194,7 @@ TXLiveBaseDelegate,TXLivePlayListener,TXVodPlayListener>
     NSString *version = [[[NSBundle mainBundle] infoDictionary]objectForKey:@"CFBundleShortVersionString"];
     NSArray *localVersionArray = [version componentsSeparatedByString:@"."];
     //最新版本号
-    NSString *lastVersion = @"4.2.68";
+    NSString *lastVersion = @"4.2.69";
     NSArray *lastVersionArray = [lastVersion componentsSeparatedByString:@"."];
     for (int i = 0; i < localVersionArray.count; i++)
     {
